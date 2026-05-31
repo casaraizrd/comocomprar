@@ -1,6 +1,0 @@
-SUBE TODO ESTO A GITHUB:
-- index.html
-- firebase-config.js
-- landing-send.js
-- gracias.html
-- guia-comprar-apartamento-rd-2026.pdf
