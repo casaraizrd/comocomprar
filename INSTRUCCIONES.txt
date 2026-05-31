@@ -1,0 +1,30 @@
+INSTRUCCIONES PARA SUBIR A HOSTINGER
+
+1. Crea un subdominio en Hostinger.
+   Ejemplo:
+   guia.casaraizrd.com
+   o financiamiento.casaraizrd.com
+
+2. Entra al Administrador de Archivos de Hostinger.
+
+3. Abre la carpeta del subdominio.
+
+4. Sube estos archivos:
+   - index.html
+   - send.php
+   - gracias.html
+   - guia-comprar-apartamento-rd-2026.pdf
+
+5. Prueba la página entrando al subdominio.
+
+6. Haz una prueba llenando el formulario.
+   Debe:
+   - guardar el lead en leads-guia.csv
+   - enviarte un correo a ivanalberto@casaraizrd.com
+   - enviar un correo al cliente con el enlace de la guía
+   - llevar al usuario a gracias.html para descargar el PDF
+
+IMPORTANTE:
+- El archivo leads-guia.csv se crea automáticamente después del primer lead.
+- Si el correo no llega, revisa Spam o configura el correo SMTP del dominio en Hostinger.
+- Para conectar directamente con tu CRM, hay que adaptar el send.php según la base de datos o endpoint de tu CRM.
