@@ -1,1 +1,507 @@
-<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1.0'><title>Casa Raiz RD</title></head><body><h1>Landing configurada</h1><form id='leadMagnetForm'><input name='nombre' placeholder='Nombre' required><input name='whatsapp' placeholder='WhatsApp' required><input name='correo' type='email' placeholder='Correo' required><select name='presupuesto'><option>RD$3,500,000 - RD$5,000,000</option></select><button type='submit'>Descargar guía gratis</button></form><script type='module' src='landing-send.js'></script></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Guía Gratis 2026 | Casa Raiz RD</title>
+  <meta name="description" content="Descarga gratis la guía para comprar un apartamento en República Dominicana. Aprende sobre requisitos, inicial, financiamiento y bono vivienda." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --green:#0B7A4B;
+      --green2:#12a367;
+      --dark:#10231b;
+      --muted:#64756e;
+      --soft:#eef8f2;
+      --white:#ffffff;
+      --border:#dbe9e2;
+      --gold:#d5aa4b;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:Inter,Arial,sans-serif;
+      color:var(--dark);
+      background:
+        radial-gradient(circle at top left, rgba(18,163,103,.18), transparent 34%),
+        linear-gradient(135deg,#f8fcfa 0%,#edf8f2 100%);
+    }
+
+    .container{
+      max-width:1180px;
+      margin:0 auto;
+      padding:0 22px;
+    }
+
+    header{
+      padding:18px 0;
+      background:rgba(255,255,255,.82);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--border);
+      position:sticky;
+      top:0;
+      z-index:10;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:900;
+      color:var(--green);
+      font-size:20px;
+    }
+
+    .logo{
+      width:44px;
+      height:44px;
+      border-radius:14px;
+      background:linear-gradient(135deg,var(--green),var(--green2));
+      color:white;
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      box-shadow:0 14px 30px rgba(11,122,75,.22);
+    }
+
+    .hero{
+      padding:58px 0 48px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:42px;
+      align-items:center;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 15px;
+      border-radius:999px;
+      background:#e8f6ef;
+      color:var(--green);
+      border:1px solid #cfe8d8;
+      font-weight:800;
+      font-size:14px;
+    }
+
+    h1{
+      font-size:clamp(38px,5.2vw,64px);
+      line-height:1.02;
+      letter-spacing:-2.2px;
+      margin:22px 0 18px;
+    }
+
+    .lead{
+      font-size:19px;
+      line-height:1.65;
+      color:var(--muted);
+      max-width:670px;
+      margin:0 0 26px;
+    }
+
+    .benefits{
+      display:grid;
+      gap:13px;
+      margin:28px 0;
+    }
+
+    .benefit{
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      font-weight:600;
+      color:#263a33;
+      line-height:1.5;
+    }
+
+    .check{
+      width:25px;
+      height:25px;
+      border-radius:50%;
+      background:var(--green);
+      color:#fff;
+      display:grid;
+      place-items:center;
+      flex:0 0 auto;
+      font-size:14px;
+      font-weight:900;
+    }
+
+    .trust{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:24px;
+    }
+
+    .trust span{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:999px;
+      padding:9px 13px;
+      color:#52645d;
+      font-size:14px;
+      font-weight:700;
+    }
+
+    .form-card{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:30px;
+      padding:32px;
+      box-shadow:0 28px 75px rgba(20,54,38,.14);
+    }
+
+    .form-card h2{
+      font-size:29px;
+      margin:0 0 8px;
+      letter-spacing:-.7px;
+    }
+
+    .form-card p{
+      margin:0 0 22px;
+      color:var(--muted);
+      line-height:1.6;
+    }
+
+    form{
+      display:grid;
+      gap:14px;
+    }
+
+    label{
+      font-size:14px;
+      font-weight:800;
+      color:#243a31;
+    }
+
+    .field{
+      display:grid;
+      gap:7px;
+    }
+
+    input,select{
+      width:100%;
+      border:1px solid var(--border);
+      border-radius:15px;
+      padding:15px 14px;
+      font-size:16px;
+      font-family:inherit;
+      outline:none;
+      background:#fff;
+      transition:.2s;
+    }
+
+    input:focus,select:focus{
+      border-color:var(--green);
+      box-shadow:0 0 0 4px rgba(11,122,75,.12);
+    }
+
+    button{
+      border:0;
+      border-radius:17px;
+      padding:17px 18px;
+      background:linear-gradient(135deg,var(--green),var(--green2));
+      color:#fff;
+      font-size:17px;
+      font-weight:900;
+      cursor:pointer;
+      box-shadow:0 16px 30px rgba(11,122,75,.24);
+      transition:.2s;
+    }
+
+    button:hover{
+      transform:translateY(-1px);
+    }
+
+    button:disabled{
+      opacity:.65;
+      cursor:not-allowed;
+    }
+
+    .privacy{
+      font-size:12px;
+      line-height:1.5;
+      color:#7a8a83;
+      text-align:center;
+      margin-top:4px;
+    }
+
+    .preview{
+      margin-top:24px;
+      padding:20px;
+      border-radius:22px;
+      border:1px solid var(--border);
+      background:#f6fbf8;
+    }
+
+    .preview strong{
+      display:block;
+      margin-bottom:10px;
+      color:var(--green);
+    }
+
+    .preview ul{
+      margin:0;
+      padding-left:20px;
+      color:#40544b;
+      line-height:1.75;
+    }
+
+    .section{
+      padding:42px 0 54px;
+    }
+
+    .section h2{
+      text-align:center;
+      font-size:34px;
+      margin:0 0 12px;
+      letter-spacing:-.8px;
+    }
+
+    .section .center{
+      text-align:center;
+      max-width:720px;
+      margin:0 auto 28px;
+      color:var(--muted);
+      line-height:1.65;
+      font-size:17px;
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .step{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:24px;
+      padding:24px;
+      box-shadow:0 18px 50px rgba(20,54,38,.08);
+    }
+
+    .num{
+      width:40px;
+      height:40px;
+      border-radius:13px;
+      background:#e8f6ef;
+      color:var(--green);
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      margin-bottom:14px;
+    }
+
+    .step h3{
+      margin:0 0 9px;
+      font-size:19px;
+    }
+
+    .step p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.6;
+    }
+
+    .whatsapp{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      background:#25D366;
+      color:#fff;
+      padding:14px 17px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:900;
+      box-shadow:0 14px 35px rgba(37,211,102,.35);
+      z-index:20;
+    }
+
+    footer{
+      text-align:center;
+      padding:30px 0;
+      color:#6f7f79;
+      font-size:14px;
+    }
+
+    @media(max-width:880px){
+      .grid{
+        grid-template-columns:1fr;
+        gap:28px;
+      }
+
+      .hero{
+        padding:34px 0 30px;
+      }
+
+      .form-card{
+        padding:24px;
+        border-radius:25px;
+      }
+
+      .steps{
+        grid-template-columns:1fr;
+      }
+
+      .whatsapp{
+        left:16px;
+        right:16px;
+        text-align:center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <div class="brand">
+      <div class="logo">CR</div>
+      <span>Casa Raiz RD</span>
+    </div>
+  </div>
+</header>
+
+<main class="hero">
+  <div class="container grid">
+
+    <section>
+      <div class="badge">📘 Guía gratuita 2026</div>
+
+      <h1>Aprende cómo comprar tu apartamento en República Dominicana</h1>
+
+      <p class="lead">
+        Descarga gratis una guía práctica con requisitos, inicial, financiamiento,
+        bono vivienda y errores que debes evitar antes de comprar.
+      </p>
+
+      <div class="benefits">
+        <div class="benefit"><span class="check">✓</span><span>Conoce cuánto inicial necesitas para empezar.</span></div>
+        <div class="benefit"><span class="check">✓</span><span>Entiende cómo funciona el financiamiento hipotecario.</span></div>
+        <div class="benefit"><span class="check">✓</span><span>Descubre opciones de apartamentos en plano y oportunidades de inversión.</span></div>
+      </div>
+
+      <div class="trust">
+        <span>Asesoría inmobiliaria</span>
+        <span>Opciones en RD</span>
+        <span>Descarga inmediata</span>
+      </div>
+    </section>
+
+    <aside class="form-card">
+      <h2>Recibe la guía gratis</h2>
+      <p>Completa tus datos y podrás descargarla inmediatamente.</p>
+
+      <form id="leadMagnetForm">
+
+        <div class="field">
+          <label>Nombre completo</label>
+          <input type="text" name="nombre" placeholder="Ej: Juan Pérez" required>
+        </div>
+
+        <div class="field">
+          <label>WhatsApp</label>
+          <input type="tel" name="whatsapp" placeholder="Ej: 8290000000" required>
+        </div>
+
+        <div class="field">
+          <label>Correo electrónico</label>
+          <input type="email" name="correo" placeholder="Ej: correo@gmail.com" required>
+        </div>
+
+        <div class="field">
+          <label>Presupuesto aproximado</label>
+          <select name="presupuesto" required>
+            <option value="">Selecciona una opción</option>
+            <option>Menos de RD$3,500,000</option>
+            <option>RD$3,500,000 - RD$5,000,000</option>
+            <option>RD$5,000,000 - RD$7,000,000</option>
+            <option>Más de RD$7,000,000</option>
+            <option>No estoy seguro/a</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Zona de interés</label>
+          <input type="text" name="zona" placeholder="Ej: Santo Domingo, Santiago...">
+        </div>
+
+        <button type="submit">Descargar guía gratis</button>
+
+        <div class="privacy">
+          Tus datos serán usados para enviarte información y asesoría inmobiliaria.
+        </div>
+      </form>
+
+      <div class="preview">
+        <strong>Dentro de la guía aprenderás:</strong>
+        <ul>
+          <li>Requisitos para comprar</li>
+          <li>Cómo funciona el inicial</li>
+          <li>Financiamiento hipotecario</li>
+          <li>Bono vivienda</li>
+          <li>Errores comunes al comprar</li>
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+</main>
+
+<section class="section">
+  <div class="container">
+    <h2>Cómo funciona</h2>
+    <p class="center">
+      El proceso es simple: dejas tus datos, recibes la guía gratis y luego puedes solicitar asesoría personalizada.
+    </p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <h3>Completa el formulario</h3>
+        <p>Déjanos tu nombre, WhatsApp, correo y presupuesto aproximado.</p>
+      </div>
+
+      <div class="step">
+        <div class="num">2</div>
+        <h3>Descarga la guía</h3>
+        <p>Accede inmediatamente al PDF con información para orientarte.</p>
+      </div>
+
+      <div class="step">
+        <div class="num">3</div>
+        <h3>Recibe asesoría</h3>
+        <p>Un asesor puede ayudarte a evaluar opciones reales según tu perfil.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<a class="whatsapp" href="https://wa.me/18292786677?text=Hola%2C%20quiero%20asesor%C3%ADa%20para%20comprar%20un%20apartamento" target="_blank">
+  WhatsApp
+</a>
+
+<footer>
+  <div class="container">
+    © 2026 Casa Raiz RD. Todos los derechos reservados.
+  </div>
+</footer>
+
+<script type="module" src="landing-send.js"></script>
+
+</body>
+</html>
