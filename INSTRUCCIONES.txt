@@ -1,0 +1,13 @@
+SUBE ESTOS ARCHIVOS A TU REPOSITORIO DE GITHUB DE LA LANDING:
+
+- index.html
+- landing-send.js
+- firebase-config.js
+- gracias.html
+- guia-comprar-apartamento-rd-2026.pdf
+
+IMPORTANTE:
+Reemplaza los archivos anteriores por estos.
+Si GitHub te pregunta, confirma que quieres sobrescribir index.html.
+
+Luego espera 1-3 minutos para que GitHub Pages actualice.
