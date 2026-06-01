@@ -1,13 +1,12 @@
-SUBE ESTOS ARCHIVOS A TU REPOSITORIO DE GITHUB DE LA LANDING:
+SUBE ESTOS ARCHIVOS A TU REPOSITORIO DE GITHUB DE LA LANDING Y REEMPLAZA LOS ANTERIORES:
 
 - index.html
+- logo-casa-raiz.png
+
+NO borres estos archivos si ya los tienes funcionando:
 - landing-send.js
 - firebase-config.js
 - gracias.html
 - guia-comprar-apartamento-rd-2026.pdf
 
-IMPORTANTE:
-Reemplaza los archivos anteriores por estos.
-Si GitHub te pregunta, confirma que quieres sobrescribir index.html.
-
-Luego espera 1-3 minutos para que GitHub Pages actualice.
+Este index.html mantiene el mismo formulario con id="leadMagnetForm", así que seguirá conectado a Firebase y tu CRM.
