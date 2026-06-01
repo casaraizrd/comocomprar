@@ -15,23 +15,45 @@
     :root{
       --green:#0B7A4B;
       --green2:#12a367;
-      --dark:#10231b;
-      --muted:#64756e;
-      --soft:#eef8f2;
+      --dark:#071d14;
+      --muted:#66756f;
+      --cream:#f6f2e9;
       --white:#ffffff;
-      --border:#dbe9e2;
+      --border:rgba(255,255,255,.24);
       --gold:#d5aa4b;
+      --shadow:0 28px 80px rgba(0,0,0,.22);
     }
 
     *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
 
     body{
       margin:0;
       font-family:Inter,Arial,sans-serif;
-      color:var(--dark);
+      color:var(--white);
+      background:#071d14;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:-3;
       background:
-        radial-gradient(circle at top left, rgba(18,163,103,.18), transparent 34%),
-        linear-gradient(135deg,#f8fcfa 0%,#edf8f2 100%);
+        linear-gradient(90deg,rgba(4,18,12,.92) 0%,rgba(5,24,16,.72) 43%,rgba(5,24,16,.18) 100%),
+        url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=85') center/cover no-repeat;
+    }
+
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:-2;
+      background:
+        radial-gradient(circle at 18% 24%,rgba(18,163,103,.35),transparent 34%),
+        radial-gradient(circle at 80% 18%,rgba(213,170,75,.20),transparent 30%),
+        linear-gradient(180deg,rgba(5,20,13,.05),rgba(5,20,13,.78));
+      pointer-events:none;
     }
 
     .container{
@@ -41,96 +63,178 @@
     }
 
     header{
-      padding:18px 0;
-      background:rgba(255,255,255,.82);
-      backdrop-filter:blur(14px);
-      border-bottom:1px solid var(--border);
+      padding:16px 0;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(11,122,75,.12);
       position:sticky;
       top:0;
-      z-index:10;
+      z-index:20;
     }
 
     .brand{
       display:flex;
       align-items:center;
-      gap:12px;
-      font-weight:900;
-      color:var(--green);
-      font-size:20px;
+      justify-content:space-between;
+      gap:18px;
     }
 
-    .logo{
-      width:44px;
-      height:44px;
+    .brand-left{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .brand img{
+      width:64px;
+      height:64px;
+      object-fit:contain;
       border-radius:14px;
-      background:linear-gradient(135deg,var(--green),var(--green2));
-      color:white;
+      background:#fff;
+    }
+
+    .brand-text{
       display:grid;
-      place-items:center;
+      gap:2px;
+    }
+
+    .brand-text strong{
+      color:var(--green);
+      font-size:20px;
       font-weight:900;
-      box-shadow:0 14px 30px rgba(11,122,75,.22);
+      letter-spacing:-.4px;
+    }
+
+    .brand-text span{
+      color:#42564e;
+      font-size:12px;
+      font-weight:700;
+    }
+
+    .top-cta{
+      color:#fff;
+      background:linear-gradient(135deg,var(--green),var(--green2));
+      padding:12px 16px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:900;
+      box-shadow:0 12px 28px rgba(11,122,75,.22);
+      white-space:nowrap;
     }
 
     .hero{
-      padding:58px 0 48px;
+      min-height:calc(100vh - 96px);
+      padding:58px 0 44px;
+      display:flex;
+      align-items:center;
     }
 
     .grid{
       display:grid;
-      grid-template-columns:1.08fr .92fr;
-      gap:42px;
+      grid-template-columns:1.05fr .95fr;
+      gap:44px;
       align-items:center;
+      width:100%;
     }
 
     .badge{
       display:inline-flex;
       align-items:center;
       gap:8px;
-      padding:10px 15px;
+      padding:11px 15px;
       border-radius:999px;
-      background:#e8f6ef;
-      color:var(--green);
-      border:1px solid #cfe8d8;
-      font-weight:800;
+      background:rgba(255,255,255,.13);
+      color:#fff;
+      border:1px solid rgba(255,255,255,.24);
+      font-weight:900;
       font-size:14px;
+      backdrop-filter:blur(12px);
+      box-shadow:0 12px 30px rgba(0,0,0,.12);
+    }
+
+    .badge span{
+      color:var(--gold);
     }
 
     h1{
-      font-size:clamp(38px,5.2vw,64px);
-      line-height:1.02;
-      letter-spacing:-2.2px;
+      font-size:clamp(38px,5.3vw,68px);
+      line-height:.99;
+      letter-spacing:-2.6px;
       margin:22px 0 18px;
+      text-wrap:balance;
     }
+
+    .gold{color:var(--gold)}
 
     .lead{
       font-size:19px;
-      line-height:1.65;
-      color:var(--muted);
-      max-width:670px;
+      line-height:1.7;
+      color:rgba(255,255,255,.82);
+      max-width:680px;
       margin:0 0 26px;
     }
 
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin:28px 0;
+    }
+
+    .main-btn,.ghost-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:17px;
+      padding:16px 20px;
+      font-weight:900;
+      text-decoration:none;
+      transition:.2s ease;
+    }
+
+    .main-btn{
+      background:linear-gradient(135deg,var(--green),var(--green2));
+      color:#fff;
+      box-shadow:0 18px 34px rgba(11,122,75,.34);
+    }
+
+    .ghost-btn{
+      color:#fff;
+      border:1px solid rgba(255,255,255,.28);
+      background:rgba(255,255,255,.12);
+      backdrop-filter:blur(12px);
+    }
+
+    .main-btn:hover,.ghost-btn:hover{transform:translateY(-2px)}
+
     .benefits{
       display:grid;
-      gap:13px;
-      margin:28px 0;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px;
+      margin-top:28px;
+      max-width:760px;
     }
 
     .benefit{
       display:flex;
-      align-items:flex-start;
       gap:12px;
-      font-weight:600;
-      color:#263a33;
-      line-height:1.5;
+      align-items:flex-start;
+      padding:14px;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(255,255,255,.10);
+      border-radius:18px;
+      backdrop-filter:blur(14px);
+      color:rgba(255,255,255,.88);
+      font-weight:700;
+      line-height:1.45;
     }
 
     .check{
-      width:25px;
-      height:25px;
+      width:26px;
+      height:26px;
       border-radius:50%;
-      background:var(--green);
-      color:#fff;
+      background:var(--gold);
+      color:#0b2016;
       display:grid;
       place-items:center;
       flex:0 0 auto;
@@ -138,35 +242,55 @@
       font-weight:900;
     }
 
-    .trust{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:24px;
-    }
-
-    .trust span{
-      background:#fff;
-      border:1px solid var(--border);
-      border-radius:999px;
-      padding:9px 13px;
-      color:#52645d;
-      font-size:14px;
-      font-weight:700;
-    }
-
     .form-card{
+      background:rgba(255,255,255,.96);
+      color:var(--dark);
+      border:1px solid rgba(255,255,255,.45);
+      border-radius:32px;
+      padding:34px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .form-card::before{
+      content:"";
+      position:absolute;
+      inset:0 0 auto 0;
+      height:7px;
+      background:linear-gradient(90deg,var(--green),var(--gold),var(--green2));
+    }
+
+    .form-logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:18px;
+    }
+
+    .form-logo img{
+      width:76px;
+      height:76px;
+      object-fit:contain;
       background:#fff;
-      border:1px solid var(--border);
-      border-radius:30px;
-      padding:32px;
-      box-shadow:0 28px 75px rgba(20,54,38,.14);
+      border-radius:18px;
+      border:1px solid #e5eee9;
+      padding:4px;
+    }
+
+    .form-logo span{
+      font-size:13px;
+      font-weight:900;
+      color:var(--green);
+      text-transform:uppercase;
+      letter-spacing:.08em;
     }
 
     .form-card h2{
-      font-size:29px;
+      font-size:31px;
       margin:0 0 8px;
-      letter-spacing:-.7px;
+      letter-spacing:-.8px;
+      color:#11251c;
     }
 
     .form-card p{
@@ -175,26 +299,20 @@
       line-height:1.6;
     }
 
-    form{
-      display:grid;
-      gap:14px;
-    }
+    form{display:grid;gap:14px}
 
     label{
       font-size:14px;
-      font-weight:800;
-      color:#243a31;
+      font-weight:900;
+      color:#20362d;
     }
 
-    .field{
-      display:grid;
-      gap:7px;
-    }
+    .field{display:grid;gap:7px}
 
     input,select{
       width:100%;
-      border:1px solid var(--border);
-      border-radius:15px;
+      border:1px solid #d8e8df;
+      border-radius:16px;
       padding:15px 14px;
       font-size:16px;
       font-family:inherit;
@@ -210,8 +328,8 @@
 
     button{
       border:0;
-      border-radius:17px;
-      padding:17px 18px;
+      border-radius:18px;
+      padding:18px;
       background:linear-gradient(135deg,var(--green),var(--green2));
       color:#fff;
       font-size:17px;
@@ -221,35 +339,29 @@
       transition:.2s;
     }
 
-    button:hover{
-      transform:translateY(-1px);
-    }
-
-    button:disabled{
-      opacity:.65;
-      cursor:not-allowed;
-    }
+    button:hover{transform:translateY(-1px)}
+    button:disabled{opacity:.65;cursor:not-allowed}
 
     .privacy{
       font-size:12px;
       line-height:1.5;
-      color:#7a8a83;
+      color:#74847d;
       text-align:center;
-      margin-top:4px;
     }
 
     .preview{
-      margin-top:24px;
-      padding:20px;
+      margin-top:22px;
+      padding:18px;
       border-radius:22px;
-      border:1px solid var(--border);
-      background:#f6fbf8;
+      border:1px solid #dcebe3;
+      background:linear-gradient(135deg,#f5fbf8,#fff);
     }
 
     .preview strong{
       display:block;
       margin-bottom:10px;
       color:var(--green);
+      font-size:15px;
     }
 
     .preview ul{
@@ -260,20 +372,22 @@
     }
 
     .section{
-      padding:42px 0 54px;
+      padding:58px 0;
+      background:#f7fbf8;
+      color:#10231b;
     }
 
     .section h2{
       text-align:center;
-      font-size:34px;
+      font-size:36px;
       margin:0 0 12px;
-      letter-spacing:-.8px;
+      letter-spacing:-1px;
     }
 
     .section .center{
       text-align:center;
-      max-width:720px;
-      margin:0 auto 28px;
+      max-width:760px;
+      margin:0 auto 30px;
       color:var(--muted);
       line-height:1.65;
       font-size:17px;
@@ -287,16 +401,16 @@
 
     .step{
       background:#fff;
-      border:1px solid var(--border);
+      border:1px solid #dbe9e2;
       border-radius:24px;
       padding:24px;
       box-shadow:0 18px 50px rgba(20,54,38,.08);
     }
 
     .num{
-      width:40px;
-      height:40px;
-      border-radius:13px;
+      width:42px;
+      height:42px;
+      border-radius:14px;
       background:#e8f6ef;
       color:var(--green);
       display:grid;
@@ -305,16 +419,8 @@
       margin-bottom:14px;
     }
 
-    .step h3{
-      margin:0 0 9px;
-      font-size:19px;
-    }
-
-    .step p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.6;
-    }
+    .step h3{margin:0 0 9px;font-size:19px}
+    .step p{margin:0;color:var(--muted);line-height:1.6}
 
     .whatsapp{
       position:fixed;
@@ -327,40 +433,26 @@
       text-decoration:none;
       font-weight:900;
       box-shadow:0 14px 35px rgba(37,211,102,.35);
-      z-index:20;
+      z-index:25;
     }
 
     footer{
+      background:#071d14;
+      color:rgba(255,255,255,.65);
       text-align:center;
-      padding:30px 0;
-      color:#6f7f79;
+      padding:28px 0;
       font-size:14px;
     }
 
-    @media(max-width:880px){
-      .grid{
-        grid-template-columns:1fr;
-        gap:28px;
-      }
-
-      .hero{
-        padding:34px 0 30px;
-      }
-
-      .form-card{
-        padding:24px;
-        border-radius:25px;
-      }
-
-      .steps{
-        grid-template-columns:1fr;
-      }
-
-      .whatsapp{
-        left:16px;
-        right:16px;
-        text-align:center;
-      }
+    @media(max-width:920px){
+      .grid{grid-template-columns:1fr;gap:30px}
+      .hero{padding:38px 0 34px}
+      .benefits{grid-template-columns:1fr}
+      .top-cta{display:none}
+      .form-card{padding:25px;border-radius:26px}
+      .steps{grid-template-columns:1fr}
+      .whatsapp{left:16px;right:16px;text-align:center}
+      .brand img{width:54px;height:54px}
     }
   </style>
 </head>
@@ -368,11 +460,15 @@
 <body>
 
 <header>
-  <div class="container">
-    <div class="brand">
-      <div class="logo">CR</div>
-      <span>Casa Raiz RD</span>
+  <div class="container brand">
+    <div class="brand-left">
+      <img src="logo-casa-raiz.png" alt="Casa Raiz RD">
+      <div class="brand-text">
+        <strong>Casa Raiz RD</strong>
+        <span>Donde echan raíces tus sueños</span>
+      </div>
     </div>
+    <a class="top-cta" href="#formulario">Descargar guía</a>
   </div>
 </header>
 
@@ -380,29 +476,34 @@
   <div class="container grid">
 
     <section>
-      <div class="badge">📘 Guía gratuita 2026</div>
+      <div class="badge">📘 <span>Guía gratuita 2026</span></div>
 
-      <h1>Aprende cómo comprar tu apartamento en República Dominicana</h1>
+      <h1>Compra tu apartamento en RD con una ruta clara y segura</h1>
 
       <p class="lead">
-        Descarga gratis una guía práctica con requisitos, inicial, financiamiento,
-        bono vivienda y errores que debes evitar antes de comprar.
+        Descarga gratis una guía práctica para entender requisitos, inicial,
+        financiamiento, bono vivienda y errores que debes evitar antes de invertir.
       </p>
+
+      <div class="hero-actions">
+        <a class="main-btn" href="#formulario">Quiero la guía gratis</a>
+        <a class="ghost-btn" href="https://wa.me/18292786677?text=Hola%2C%20quiero%20asesor%C3%ADa%20para%20comprar%20un%20apartamento" target="_blank">Hablar por WhatsApp</a>
+      </div>
 
       <div class="benefits">
         <div class="benefit"><span class="check">✓</span><span>Conoce cuánto inicial necesitas para empezar.</span></div>
         <div class="benefit"><span class="check">✓</span><span>Entiende cómo funciona el financiamiento hipotecario.</span></div>
-        <div class="benefit"><span class="check">✓</span><span>Descubre opciones de apartamentos en plano y oportunidades de inversión.</span></div>
-      </div>
-
-      <div class="trust">
-        <span>Asesoría inmobiliaria</span>
-        <span>Opciones en RD</span>
-        <span>Descarga inmediata</span>
+        <div class="benefit"><span class="check">✓</span><span>Aprende sobre bono vivienda y requisitos básicos.</span></div>
+        <div class="benefit"><span class="check">✓</span><span>Evita errores comunes antes de separar una propiedad.</span></div>
       </div>
     </section>
 
-    <aside class="form-card">
+    <aside class="form-card" id="formulario">
+      <div class="form-logo">
+        <img src="logo-casa-raiz.png" alt="Casa Raiz RD">
+        <span>Asesoría inmobiliaria</span>
+      </div>
+
       <h2>Recibe la guía gratis</h2>
       <p>Completa tus datos y podrás descargarla inmediatamente.</p>
 
@@ -464,41 +565,23 @@
 
 <section class="section">
   <div class="container">
-    <h2>Cómo funciona</h2>
+    <h2>Un proceso simple para empezar</h2>
     <p class="center">
-      El proceso es simple: dejas tus datos, recibes la guía gratis y luego puedes solicitar asesoría personalizada.
+      Captamos tus datos para enviarte la guía y poder orientarte mejor según tu presupuesto, zona y etapa de compra.
     </p>
 
     <div class="steps">
-      <div class="step">
-        <div class="num">1</div>
-        <h3>Completa el formulario</h3>
-        <p>Déjanos tu nombre, WhatsApp, correo y presupuesto aproximado.</p>
-      </div>
-
-      <div class="step">
-        <div class="num">2</div>
-        <h3>Descarga la guía</h3>
-        <p>Accede inmediatamente al PDF con información para orientarte.</p>
-      </div>
-
-      <div class="step">
-        <div class="num">3</div>
-        <h3>Recibe asesoría</h3>
-        <p>Un asesor puede ayudarte a evaluar opciones reales según tu perfil.</p>
-      </div>
+      <div class="step"><div class="num">1</div><h3>Completa el formulario</h3><p>Déjanos tu nombre, WhatsApp, correo y presupuesto aproximado.</p></div>
+      <div class="step"><div class="num">2</div><h3>Descarga la guía</h3><p>Accede inmediatamente al PDF con información clara para orientarte.</p></div>
+      <div class="step"><div class="num">3</div><h3>Recibe asesoría</h3><p>Un asesor puede ayudarte a evaluar opciones reales según tu perfil.</p></div>
     </div>
   </div>
 </section>
 
-<a class="whatsapp" href="https://wa.me/18292786677?text=Hola%2C%20quiero%20asesor%C3%ADa%20para%20comprar%20un%20apartamento" target="_blank">
-  WhatsApp
-</a>
+<a class="whatsapp" href="https://wa.me/18292786677?text=Hola%2C%20quiero%20asesor%C3%ADa%20para%20comprar%20un%20apartamento" target="_blank">WhatsApp</a>
 
 <footer>
-  <div class="container">
-    © 2026 Casa Raiz RD. Todos los derechos reservados.
-  </div>
+  <div class="container">© 2026 Casa Raiz RD. Todos los derechos reservados.</div>
 </footer>
 
 <script type="module" src="landing-send.js"></script>
