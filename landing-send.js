@@ -11,12 +11,14 @@ if (form) {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const button = form.querySelector("button[type='submit']");
-    const originalText = button.textContent;
+    const button = form.querySelector("button[type='submit']") || form.querySelector("button");
+    const originalText = button ? button.textContent : "";
 
     try {
-      button.disabled = true;
-      button.textContent = "Enviando...";
+      if (button) {
+        button.disabled = true;
+        button.textContent = "Preparando acceso...";
+      }
 
       const data = new FormData(form);
 
@@ -27,7 +29,8 @@ if (form) {
         presupuesto: String(data.get("presupuesto") || "").trim(),
         zona: String(data.get("zona") || "").trim(),
         estado: "Nuevo",
-        origen: "Landing Guía Financiamiento",
+        origen: "Landing Curso Interactivo",
+        recurso: "Curso interactivo HTML",
         notas: "",
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp()
@@ -40,14 +43,16 @@ if (form) {
 
       await addDoc(collection(db, "leads"), lead);
 
-      window.location.href = "gracias.html";
+      window.location.href = "curso_apartamento_rd.html";
 
     } catch (error) {
       console.error(error);
-      alert("No se pudo enviar la información. Revisa Firestore y las reglas de Firebase.");
+      alert("No se pudo enviar la información. Revisa Firebase o intenta nuevamente.");
     } finally {
-      button.disabled = false;
-      button.textContent = originalText;
+      if (button) {
+        button.disabled = false;
+        button.textContent = originalText;
+      }
     }
   });
 }

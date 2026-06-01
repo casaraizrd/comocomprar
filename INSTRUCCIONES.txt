@@ -1,12 +1,27 @@
-SUBE ESTOS ARCHIVOS A TU REPOSITORIO DE GITHUB DE LA LANDING Y REEMPLAZA LOS ANTERIORES:
+QUÉ SUBIR A GITHUB
+
+Reemplaza o sube estos archivos en el repositorio de tu landing:
 
 - index.html
-- logo-casa-raiz.png
-
-NO borres estos archivos si ya los tienes funcionando:
 - landing-send.js
 - firebase-config.js
+- curso_apartamento_rd.html
 - gracias.html
-- guia-comprar-apartamento-rd-2026.pdf
+- logo-casa-raiz.png  (si aparece en el ZIP)
 
-Este index.html mantiene el mismo formulario con id="leadMagnetForm", así que seguirá conectado a Firebase y tu CRM.
+CÓMO FUNCIONA AHORA
+
+1. La persona llena el formulario.
+2. El lead se guarda en Firebase / CRM.
+3. Automáticamente se abre:
+   curso_apartamento_rd.html
+
+NO HAY CONFLICTO
+
+El curso es otro archivo HTML independiente.
+La landing es index.html.
+GitHub Pages puede tener ambos archivos sin problema.
+
+IMPORTANTE
+
+No borres firebase-config.js ni landing-send.js.

@@ -1,0 +1,1735 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Curso 2026 — Compra tu Apartamento en RD</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:     #1a1714;
+  --ink-2:   #3a3530;
+  --ink-3:   #6b6560;
+  --gold:    #b8965a;
+  --gold-lt: #d4b07a;
+  --gold-pale:#f0e4cc;
+  --cream:   #f7f2eb;
+  --cream-2: #efe8dc;
+  --white:   #fdfaf6;
+  --line:    rgba(184,150,90,0.2);
+  --line-2:  rgba(26,23,20,0.08);
+  --shadow:  0 4px 40px rgba(26,23,20,0.08);
+  --shadow-lg: 0 12px 60px rgba(26,23,20,0.12);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior:smooth; }
+
+body {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  background: var(--white);
+  color: var(--ink);
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* ── CUSTOM CURSOR ── */
+body { cursor: none; }
+#cursor {
+  position: fixed; width:10px; height:10px;
+  border-radius:50%; background: var(--gold);
+  pointer-events:none; z-index:9999;
+  transform:translate(-50%,-50%);
+  transition: transform 0.15s ease, width 0.2s, height 0.2s, background 0.2s;
+  mix-blend-mode: multiply;
+}
+#cursor-ring {
+  position:fixed; width:32px; height:32px;
+  border-radius:50%; border:1px solid var(--gold);
+  pointer-events:none; z-index:9998;
+  transform:translate(-50%,-50%);
+  transition: transform 0.35s ease, width 0.3s, height 0.3s, opacity 0.3s;
+  opacity:0.5;
+}
+body:hover #cursor { transform:translate(-50%,-50%) scale(1); }
+a:hover ~ #cursor, button:hover ~ #cursor { transform:translate(-50%,-50%) scale(2); }
+
+/* ── GRAIN OVERLAY ── */
+body::before {
+  content:'';
+  position:fixed; inset:0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none; z-index:9997; opacity:0.4;
+}
+
+/* ══════════════════════ HERO ══════════════════════ */
+#hero-screen {
+  min-height:100vh;
+  background: var(--ink);
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  text-align:center; padding:60px 24px;
+  position:relative; overflow:hidden;
+}
+
+.hero-ornament {
+  position:absolute; top:0; left:0; right:0;
+  height:1px; background:linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.hero-ornament-b {
+  position:absolute; bottom:0; left:0; right:0;
+  height:1px; background:linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.hero-bg-text {
+  position:absolute;
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(120px,20vw,260px);
+  font-weight:300;
+  color:rgba(184,150,90,0.04);
+  letter-spacing:-0.03em;
+  pointer-events:none;
+  white-space:nowrap;
+  top:50%; transform:translateY(-50%);
+  user-select:none;
+}
+
+.hero-eyebrow {
+  font-family:'Jost',sans-serif;
+  font-weight:500;
+  font-size:11px;
+  letter-spacing:5px;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:32px;
+  animation: fadeUp 0.8s ease both;
+}
+
+.hero-rule {
+  width:40px; height:1px;
+  background:var(--gold);
+  margin:0 auto 32px;
+  animation: fadeUp 0.8s 0.1s ease both;
+}
+
+#hero-screen h1 {
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;
+  font-size:clamp(52px,9vw,110px);
+  line-height:0.92;
+  color:var(--cream);
+  letter-spacing:-0.02em;
+  margin-bottom:6px;
+  animation: fadeUp 0.9s 0.15s ease both;
+}
+
+#hero-screen h1 em {
+  font-style:italic;
+  color:var(--gold-lt);
+}
+
+.hero-location {
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  font-size:clamp(13px,2vw,16px);
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:rgba(247,242,235,0.35);
+  margin-top:20px;
+  margin-bottom:60px;
+  animation: fadeUp 0.9s 0.25s ease both;
+}
+
+/* progress */
+.hero-progress-wrap {
+  width:min(480px,85vw);
+  margin-bottom:12px;
+  animation: fadeUp 0.8s 0.3s ease both;
+}
+
+.hero-progress-track {
+  height:1px;
+  background:rgba(184,150,90,0.2);
+  position:relative;
+  margin-bottom:10px;
+}
+
+.hero-progress-fill {
+  position:absolute; left:0; top:0; height:100%;
+  background:linear-gradient(90deg, var(--gold), var(--gold-lt));
+  transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
+  width:0%;
+}
+
+.hero-progress-label {
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:rgba(184,150,90,0.5);
+  text-align:right;
+  animation: fadeUp 0.8s 0.35s ease both;
+  margin-bottom:48px;
+}
+
+.btn-hero {
+  display:inline-flex; align-items:center; gap:12px;
+  background:transparent;
+  border:1px solid var(--gold);
+  color:var(--gold-lt);
+  font-family:'Jost',sans-serif;
+  font-weight:500;
+  font-size:13px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  padding:18px 48px;
+  cursor:pointer;
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+  animation: fadeUp 0.8s 0.4s ease both;
+  position:relative;
+  overflow:hidden;
+}
+
+.btn-hero::before {
+  content:'';
+  position:absolute; inset:0;
+  background:var(--gold);
+  transform:translateX(-101%);
+  transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+
+.btn-hero:hover::before { transform:translateX(0); }
+.btn-hero:hover { color:var(--ink); transform:translateY(-2px); }
+.btn-hero span { position:relative; z-index:1; }
+
+.hero-stats {
+  display:flex; gap:56px; flex-wrap:wrap;
+  justify-content:center; margin-top:72px;
+  animation: fadeUp 0.8s 0.5s ease both;
+  border-top:1px solid rgba(184,150,90,0.12);
+  padding-top:40px;
+  width:min(480px,85vw);
+}
+
+.h-stat { text-align:center; }
+.h-stat-n {
+  font-family:'Cormorant Garamond',serif;
+  font-size:36px; font-weight:300;
+  color:var(--gold-lt);
+  display:block; line-height:1;
+}
+.h-stat-l {
+  font-size:10px; letter-spacing:3px;
+  text-transform:uppercase;
+  color:rgba(184,150,90,0.45);
+  display:block; margin-top:6px;
+}
+
+/* ══════════════════════ NAV ══════════════════════ */
+#main-content { display:none; }
+#main-content.visible { display:block; }
+
+.mod-nav {
+  position:sticky; top:0; z-index:100;
+  background:rgba(253,250,246,0.95);
+  backdrop-filter:blur(20px) saturate(1.5);
+  border-bottom:1px solid var(--line-2);
+  padding:0 24px;
+  display:flex; align-items:center; gap:0;
+  overflow-x:auto; scrollbar-width:none;
+}
+.mod-nav::-webkit-scrollbar { display:none; }
+
+.nav-logo {
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px; font-weight:400;
+  color:var(--ink-2);
+  padding:18px 28px 18px 0;
+  border-right:1px solid var(--line-2);
+  margin-right:8px;
+  flex-shrink:0;
+  letter-spacing:0.5px;
+}
+.nav-logo span { color:var(--gold); }
+
+.npill {
+  flex-shrink:0;
+  background:transparent;
+  border:none;
+  color:var(--ink-3);
+  font-family:'Jost',sans-serif;
+  font-weight:400;
+  font-size:12px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  padding:22px 18px;
+  cursor:pointer;
+  transition:color 0.2s;
+  position:relative;
+  white-space:nowrap;
+}
+
+.npill::after {
+  content:'';
+  position:absolute; bottom:0; left:18px; right:18px;
+  height:1px; background:var(--gold);
+  transform:scaleX(0);
+  transition:transform 0.3s ease;
+}
+
+.npill.active { color:var(--gold); }
+.npill.active::after, .npill:hover::after { transform:scaleX(1); }
+.npill:hover { color:var(--ink); }
+
+/* ══════════════════════ SECTIONS ══════════════════════ */
+.mod-section { display:none; animation: fadeIn 0.5s ease; }
+.mod-section.active { display:block; }
+
+/* ── MODULE HEADER ── */
+.mod-header {
+  padding:100px 48px 80px;
+  max-width:1000px; margin:0 auto;
+  display:grid; grid-template-columns:1fr auto;
+  gap:40px; align-items:end;
+  border-bottom:1px solid var(--line-2);
+}
+
+@media(max-width:680px){
+  .mod-header { grid-template-columns:1fr; padding:60px 24px 50px; }
+  .mod-num-big { display:none; }
+}
+
+.mod-eyebrow {
+  font-size:11px; letter-spacing:4px;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:16px;
+  display:flex; align-items:center; gap:12px;
+}
+.mod-eyebrow::before {
+  content:'';
+  display:block; width:24px; height:1px;
+  background:var(--gold);
+}
+
+.mod-h1 {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(38px,6vw,72px);
+  font-weight:300;
+  line-height:1.05;
+  color:var(--ink);
+  letter-spacing:-0.02em;
+}
+.mod-h1 em { font-style:italic; color:var(--gold); }
+
+.mod-desc {
+  margin-top:16px;
+  font-size:15px; line-height:1.8;
+  color:var(--ink-3); max-width:480px;
+}
+
+.mod-num-big {
+  font-family:'Cormorant Garamond',serif;
+  font-size:140px; font-weight:300;
+  color:var(--cream-2);
+  line-height:1;
+  letter-spacing:-0.05em;
+  user-select:none;
+}
+
+/* ── CONTENT ── */
+.content {
+  max-width:800px; margin:0 auto;
+  padding:64px 24px 100px;
+}
+
+/* ── CARD ── */
+.card {
+  border:1px solid var(--line-2);
+  border-radius:2px;
+  padding:40px;
+  margin-bottom:28px;
+  background:var(--white);
+  transition:border-color 0.3s, box-shadow 0.3s;
+  position:relative;
+}
+.card:hover {
+  border-color:var(--line);
+  box-shadow:var(--shadow);
+}
+.card::before {
+  content:'';
+  position:absolute; top:0; left:0;
+  width:2px; height:0;
+  background:var(--gold);
+  transition:height 0.4s ease;
+}
+.card:hover::before { height:100%; }
+
+.card-label {
+  font-size:10px; letter-spacing:4px;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:16px;
+  display:flex; align-items:center; gap:10px;
+}
+.card-label::after {
+  content:''; flex:1; height:1px;
+  background:var(--line);
+}
+
+.card-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:24px; font-weight:400;
+  color:var(--ink); margin-bottom:16px;
+  line-height:1.3;
+}
+
+.card p {
+  font-size:15px; line-height:1.9;
+  color:var(--ink-2);
+}
+
+/* ── TIP / WARNING ── */
+.tip, .warn {
+  padding:20px 24px;
+  margin:20px 0;
+  font-size:14px; line-height:1.8;
+  color:var(--ink-2);
+  border-radius:1px;
+}
+.tip {
+  background:rgba(184,150,90,0.06);
+  border-left:2px solid var(--gold);
+}
+.warn {
+  background:rgba(180,100,50,0.05);
+  border-left:2px solid #c07040;
+}
+.tip strong { color:var(--gold); font-weight:500; }
+.warn strong { color:#c07040; font-weight:500; }
+
+/* ── GRID ── */
+.grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:20px; }
+@media(max-width:560px){ .grid-2 { grid-template-columns:1fr; } }
+
+.g-item {
+  border:1px solid var(--line-2);
+  border-radius:2px;
+  padding:28px 24px;
+  transition:border-color 0.2s;
+}
+.g-item:hover { border-color:var(--line); }
+.g-item-icon { font-size:28px; margin-bottom:12px; }
+.g-item-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:17px; color:var(--ink);
+  margin-bottom:6px; font-weight:400;
+}
+.g-item-desc { font-size:13px; color:var(--ink-3); line-height:1.6; }
+
+/* ── CALCULATOR ── */
+.calc-wrap {
+  border:1px solid var(--line);
+  border-radius:2px;
+  padding:40px;
+  margin-bottom:28px;
+  background:var(--cream);
+  position:relative;
+  overflow:hidden;
+}
+.calc-wrap::after {
+  content:'';
+  position:absolute; bottom:0; right:0;
+  width:120px; height:120px;
+  background:radial-gradient(circle, rgba(184,150,90,0.08) 0%, transparent 70%);
+  pointer-events:none;
+}
+
+.calc-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px; font-weight:400;
+  color:var(--ink); margin-bottom:28px;
+  padding-bottom:16px;
+  border-bottom:1px solid var(--line-2);
+}
+
+.field { margin-bottom:20px; }
+.field label {
+  display:block;
+  font-size:10px; letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--ink-3);
+  margin-bottom:8px;
+}
+.field input, .field select {
+  width:100%;
+  background:var(--white);
+  border:1px solid var(--line-2);
+  border-radius:1px;
+  padding:13px 16px;
+  font-family:'Jost',sans-serif;
+  font-size:15px; font-weight:300;
+  color:var(--ink);
+  outline:none;
+  transition:border-color 0.2s;
+  appearance:none;
+}
+.field input::placeholder { color:var(--ink-3); }
+.field input:focus, .field select:focus { border-color:var(--gold); }
+.field select { cursor:pointer; }
+
+.calc-result {
+  border-top:1px solid var(--line-2);
+  padding-top:24px; margin-top:24px;
+  display:none;
+}
+.calc-result.show { display:block; }
+
+.r-row {
+  display:flex; justify-content:space-between; align-items:baseline;
+  padding:10px 0;
+  border-bottom:1px solid rgba(26,23,20,0.04);
+}
+.r-row:last-child { border-bottom:none; }
+.r-lbl { font-size:12px; letter-spacing:1px; color:var(--ink-3); }
+.r-val {
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px; font-weight:400; color:var(--ink);
+}
+.r-row.hero-r .r-val { font-size:28px; color:var(--gold); }
+
+.btn-calc {
+  width:100%; margin-top:20px;
+  background:var(--ink); color:var(--cream);
+  border:none; border-radius:1px;
+  font-family:'Jost',sans-serif;
+  font-weight:500; font-size:11px;
+  letter-spacing:3px; text-transform:uppercase;
+  padding:16px; cursor:pointer;
+  transition:background 0.2s, transform 0.15s;
+}
+.btn-calc:hover { background:var(--gold); transform:translateY(-1px); }
+
+/* ── CHECKLIST ── */
+.chk-list { list-style:none; margin-top:16px; }
+.chk-list li {
+  display:flex; align-items:flex-start; gap:14px;
+  padding:13px 0;
+  border-bottom:1px solid var(--line-2);
+  font-size:14px; color:var(--ink-2);
+  cursor:pointer; transition:color 0.2s;
+  line-height:1.6;
+}
+.chk-list li:last-child { border-bottom:none; }
+.chk-box {
+  width:18px; height:18px;
+  border:1px solid rgba(184,150,90,0.4);
+  border-radius:0; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px; transition:all 0.2s;
+  margin-top:2px;
+}
+.chk-list li.done { color:var(--ink-3); }
+.chk-list li.done .chk-box {
+  background:var(--gold);
+  border-color:var(--gold);
+  color:var(--white);
+}
+.chk-list li.done span:last-child { text-decoration:line-through; }
+
+/* ── QUIZ ── */
+.quiz-wrap {
+  border:1px solid var(--line-2);
+  border-radius:2px;
+  padding:36px; margin-bottom:28px;
+  background:var(--cream);
+}
+.q-eyebrow {
+  font-size:10px; letter-spacing:3px;
+  text-transform:uppercase; color:var(--gold);
+  margin-bottom:12px;
+}
+.q-text {
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px; font-weight:400;
+  line-height:1.4; color:var(--ink);
+  margin-bottom:24px;
+}
+.q-opts { display:flex; flex-direction:column; gap:10px; }
+.q-opt {
+  background:var(--white);
+  border:1px solid var(--line-2);
+  border-radius:1px;
+  padding:14px 18px;
+  font-family:'Jost',sans-serif;
+  font-size:14px; color:var(--ink-2);
+  text-align:left; cursor:pointer;
+  transition:all 0.2s;
+}
+.q-opt:hover { border-color:var(--gold); color:var(--ink); }
+.q-opt.ok { background:rgba(184,150,90,0.1); border-color:var(--gold); color:var(--gold); }
+.q-opt.bad { background:rgba(180,80,50,0.06); border-color:#c07040; color:#c07040; }
+.q-opt.off { pointer-events:none; }
+
+.q-fb {
+  margin-top:16px; padding:14px 18px;
+  font-size:13px; line-height:1.7;
+  display:none; border-radius:1px;
+}
+.q-fb.show { display:block; }
+.q-fb.ok { background:rgba(184,150,90,0.08); color:var(--gold); border:1px solid rgba(184,150,90,0.2); }
+.q-fb.bad { background:rgba(180,80,50,0.05); color:#b05030; border:1px solid rgba(180,80,50,0.15); }
+
+/* ── TIMELINE ── */
+.tl { padding-left:28px; position:relative; margin-top:16px; }
+.tl::before {
+  content:''; position:absolute;
+  left:5px; top:6px; bottom:0; width:1px;
+  background:var(--line);
+}
+.tl-item { position:relative; padding-bottom:32px; }
+.tl-dot {
+  position:absolute; left:-28px; top:5px;
+  width:11px; height:11px; border-radius:50%;
+  background:var(--white);
+  border:1px solid var(--gold);
+}
+.tl-item:first-child .tl-dot { background:var(--gold); }
+.tl-t {
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px; font-weight:400;
+  color:var(--ink); margin-bottom:6px;
+}
+.tl-d { font-size:13px; line-height:1.8; color:var(--ink-3); }
+
+/* ── ACCORDION ── */
+.acc { margin-top:16px; }
+.acc-item { border-bottom:1px solid var(--line-2); }
+.acc-h {
+  width:100%; padding:18px 0;
+  background:none; border:none;
+  display:flex; justify-content:space-between;
+  align-items:center; cursor:pointer;
+  font-family:'Jost',sans-serif;
+  font-size:14px; font-weight:400;
+  color:var(--ink-2); text-align:left;
+  transition:color 0.2s;
+}
+.acc-h:hover { color:var(--ink); }
+.acc-arrow {
+  width:24px; height:24px;
+  border:1px solid var(--line-2);
+  display:flex; align-items:center; justify-content:center;
+  font-size:16px; transition:transform 0.3s, border-color 0.2s;
+  flex-shrink:0; margin-left:16px;
+  color:var(--gold);
+}
+.acc-item.open .acc-arrow { transform:rotate(45deg); border-color:var(--gold); }
+.acc-body {
+  max-height:0; overflow:hidden;
+  transition:max-height 0.4s ease, padding 0.3s;
+  font-size:13px; line-height:1.9; color:var(--ink-3);
+}
+.acc-item.open .acc-body { max-height:300px; padding-bottom:18px; }
+
+/* ── TABLE ── */
+.tbl { width:100%; border-collapse:collapse; margin-top:16px; font-size:13px; }
+.tbl th {
+  font-size:10px; letter-spacing:2px;
+  text-transform:uppercase; color:var(--ink-3);
+  padding:12px 14px; text-align:left;
+  border-bottom:1px solid var(--line-2);
+  font-weight:500;
+}
+.tbl td {
+  padding:13px 14px;
+  border-bottom:1px solid rgba(26,23,20,0.04);
+  color:var(--ink-2);
+}
+.tbl tr:last-child td { border-bottom:none; }
+.tbl tr:hover td { background:rgba(184,150,90,0.03); }
+
+/* ── ZONES ── */
+.zones-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:12px; margin-top:16px;
+}
+.z-card {
+  border:1px solid var(--line-2); border-radius:2px;
+  padding:24px 16px; text-align:center;
+  cursor:pointer; transition:all 0.25s;
+  background:var(--white);
+}
+.z-card:hover, .z-card.sel {
+  border-color:var(--gold);
+  background:rgba(184,150,90,0.04);
+  transform:translateY(-3px);
+  box-shadow:var(--shadow);
+}
+.z-icon { font-size:28px; margin-bottom:10px; }
+.z-name {
+  font-family:'Cormorant Garamond',serif;
+  font-size:17px; font-weight:400;
+  color:var(--ink); margin-bottom:4px;
+}
+.z-sub { font-size:11px; color:var(--ink-3); line-height:1.5; }
+.z-tag {
+  display:inline-block; margin-top:8px;
+  font-size:9px; letter-spacing:2px;
+  text-transform:uppercase; color:var(--gold);
+  border:1px solid rgba(184,150,90,0.3);
+  padding:3px 10px;
+}
+
+#zone-info {
+  display:none; margin-top:16px;
+  padding:24px; border:1px solid var(--line);
+  border-radius:1px; background:var(--cream);
+  font-size:14px; line-height:1.9; color:var(--ink-2);
+}
+
+/* ── NAV BUTTONS ── */
+.nav-btns {
+  display:flex; gap:12px;
+  justify-content:space-between;
+  margin-top:48px; flex-wrap:wrap;
+}
+
+.btn-back {
+  background:none;
+  border:1px solid var(--line-2);
+  color:var(--ink-3);
+  font-family:'Jost',sans-serif;
+  font-weight:400; font-size:11px;
+  letter-spacing:2px; text-transform:uppercase;
+  padding:14px 28px; cursor:pointer;
+  transition:all 0.2s;
+  flex:1; min-width:120px;
+}
+.btn-back:hover { border-color:var(--ink-3); color:var(--ink); }
+
+.btn-next {
+  background:var(--ink); color:var(--cream);
+  border:1px solid var(--ink);
+  font-family:'Jost',sans-serif;
+  font-weight:500; font-size:11px;
+  letter-spacing:2px; text-transform:uppercase;
+  padding:14px 32px; cursor:pointer;
+  transition:all 0.2s; flex:2;
+  position:relative; overflow:hidden;
+}
+.btn-next::before {
+  content:''; position:absolute; inset:0;
+  background:var(--gold); transform:translateX(-101%);
+  transition:transform 0.3s ease;
+}
+.btn-next:hover::before { transform:translateX(0); }
+.btn-next:hover { border-color:var(--gold); }
+.btn-next span { position:relative; z-index:1; }
+
+/* ══════════════════════ COMPLETED ══════════════════════ */
+#done-screen {
+  display:none; min-height:100vh;
+  background:var(--ink);
+  align-items:center; justify-content:center;
+  flex-direction:column; text-align:center;
+  padding:60px 24px;
+}
+#done-screen.show { display:flex; }
+
+.done-ornament { color:var(--gold); font-size:48px; margin-bottom:32px; }
+
+.done-eyebrow {
+  font-size:11px; letter-spacing:5px;
+  text-transform:uppercase; color:var(--gold);
+  margin-bottom:20px;
+}
+
+#done-screen h2 {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(42px,7vw,80px);
+  font-weight:300; color:var(--cream);
+  letter-spacing:-0.02em; margin-bottom:16px;
+  line-height:1.05;
+}
+#done-screen h2 em { font-style:italic; color:var(--gold-lt); }
+
+#done-screen > p {
+  font-size:15px; color:rgba(247,242,235,0.45);
+  max-width:440px; line-height:1.8; margin-bottom:56px;
+}
+
+.cert {
+  border:1px solid rgba(184,150,90,0.3);
+  max-width:440px; width:100%;
+  padding:48px 40px; margin-bottom:40px;
+  position:relative;
+  background:rgba(184,150,90,0.03);
+}
+.cert::before, .cert::after {
+  content:''; position:absolute;
+  width:20px; height:20px;
+  border:1px solid rgba(184,150,90,0.3);
+}
+.cert::before { top:-1px; left:-1px; border-right:none; border-bottom:none; }
+.cert::after  { bottom:-1px; right:-1px; border-left:none; border-top:none; }
+
+.cert-eye {
+  font-size:10px; letter-spacing:5px;
+  text-transform:uppercase; color:var(--gold);
+  margin-bottom:24px;
+}
+.cert-name {
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px; font-weight:300;
+  color:var(--cream); margin-bottom:6px;
+}
+.cert-sub { font-size:12px; color:rgba(247,242,235,0.3); margin-bottom:32px; }
+.cert-score {
+  font-family:'Cormorant Garamond',serif;
+  font-size:72px; font-weight:300;
+  color:var(--gold); line-height:1;
+}
+.cert-score-lbl { font-size:10px; letter-spacing:3px; color:rgba(184,150,90,0.5); margin-top:4px; }
+
+.done-contact {
+  max-width:440px; width:100%;
+  border:1px solid rgba(184,150,90,0.15);
+  padding:32px;
+}
+.done-contact h3 {
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px; font-weight:300;
+  color:var(--cream); margin-bottom:20px;
+}
+.c-link {
+  display:flex; align-items:center; gap:12px;
+  padding:12px 0;
+  border-bottom:1px solid rgba(184,150,90,0.1);
+  font-size:13px; color:rgba(247,242,235,0.5);
+  text-decoration:none; letter-spacing:0.5px;
+  transition:color 0.2s;
+}
+.c-link:last-child { border-bottom:none; }
+.c-link:hover { color:var(--gold-lt); }
+.c-icon { font-size:16px; }
+
+.btn-restart {
+  margin-top:32px; background:transparent;
+  border:1px solid rgba(184,150,90,0.3);
+  color:rgba(184,150,90,0.5);
+  font-family:'Jost',sans-serif; font-size:11px;
+  letter-spacing:2px; text-transform:uppercase;
+  padding:12px 28px; cursor:pointer;
+  transition:all 0.2s;
+}
+.btn-restart:hover { border-color:var(--gold); color:var(--gold); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+/* ── DIVIDER ── */
+.divider {
+  display:flex; align-items:center; gap:16px;
+  margin:32px 0; color:var(--gold);
+  font-size:12px; letter-spacing:3px;
+  text-transform:uppercase;
+}
+.divider::before, .divider::after {
+  content:''; flex:1; height:1px;
+  background:var(--line);
+}
+
+/* ── HIGHLIGHT STAT ── */
+.stat-highlight {
+  display:flex; align-items:baseline; gap:12px;
+  margin:16px 0;
+}
+.big-n {
+  font-family:'Cormorant Garamond',serif;
+  font-size:52px; font-weight:300;
+  color:var(--gold); line-height:1;
+}
+.big-n-desc { font-size:14px; color:var(--ink-3); line-height:1.5; }
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width:5px; }
+::-webkit-scrollbar-track { background:var(--cream-2); }
+::-webkit-scrollbar-thumb { background:rgba(184,150,90,0.35); border-radius:10px; }
+
+/* SELECTION */
+::selection { background:var(--gold-pale); color:var(--ink); }
+
+/* RESPONSIVE */
+@media(max-width:480px){
+  .calc-wrap, .card, .quiz-wrap { padding:24px 20px; }
+  .mod-header { padding:50px 20px 40px; }
+  .content { padding:40px 20px 70px; }
+}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- ════════════════════ HERO ════════════════════ -->
+<section id="hero-screen">
+  <div class="hero-ornament"></div>
+  <div class="hero-bg-text">RD 2026</div>
+
+  <div class="hero-eyebrow">Casa Raíz RD &nbsp;·&nbsp; Curso Completo</div>
+  <div class="hero-rule"></div>
+
+  <h1>Compra tu<br><em>Apartamento</em><br>en la RD</h1>
+  <p class="hero-location">República Dominicana · 2026</p>
+
+  <div class="hero-progress-wrap">
+    <div class="hero-progress-track">
+      <div class="hero-progress-fill" id="main-progress"></div>
+    </div>
+  </div>
+  <div class="hero-progress-label" id="progress-text">0 de 6 módulos completados</div>
+
+  <button class="btn-hero" onclick="startCourse()">
+    <span>Comenzar el curso</span>
+  </button>
+
+  <div class="hero-stats">
+    <div class="h-stat"><span class="h-stat-n">6</span><span class="h-stat-l">Módulos</span></div>
+    <div class="h-stat"><span class="h-stat-n">30'</span><span class="h-stat-l">Duración</span></div>
+    <div class="h-stat"><span class="h-stat-n">∞</span><span class="h-stat-l">Valor</span></div>
+    <div class="h-stat"><span class="h-stat-n">🇩🇴</span><span class="h-stat-l">Para RD</span></div>
+  </div>
+  <div class="hero-ornament-b"></div>
+</section>
+
+<!-- ════════════════════ MAIN ════════════════════ -->
+<div id="main-content">
+  <nav class="mod-nav">
+    <div class="nav-logo">Casa<span>Raíz</span></div>
+    <button class="npill active" onclick="goMod(0)" id="p0">Finanzas</button>
+    <button class="npill" onclick="goMod(1)" id="p1">Hipoteca</button>
+    <button class="npill" onclick="goMod(2)" id="p2">En Plano</button>
+    <button class="npill" onclick="goMod(3)" id="p3">Inversión</button>
+    <button class="npill" onclick="goMod(4)" id="p4">Legal</button>
+    <button class="npill" onclick="goMod(5)" id="p5">Checklist</button>
+  </nav>
+
+  <!-- ── M1 FINANZAS ── -->
+  <section class="mod-section active" id="m0">
+    <div class="mod-header">
+      <div>
+        <div class="mod-eyebrow">Módulo 01</div>
+        <h2 class="mod-h1">Planificación<br><em>Financiera</em></h2>
+        <p class="mod-desc">Antes de buscar apartamento, organiza tus finanzas. Esta es la base sobre la que se construye todo lo demás.</p>
+      </div>
+      <div class="mod-num-big">01</div>
+    </div>
+
+    <div class="content">
+
+      <div class="card">
+        <div class="card-label">Concepto clave</div>
+        <div class="card-title">¿Cuánto puedo pagar mensualmente?</div>
+        <p>La regla universal en República Dominicana es que tu cuota mensual de hipoteca <strong>no debe superar el 30%–40% de tus ingresos netos</strong>. Trabajar con el 30% te da margen de maniobra ante imprevistos.</p>
+        <div class="stat-highlight">
+          <div class="big-n">30%</div>
+          <div class="big-n-desc">Porcentaje máximo<br>recomendado de tus ingresos<br>para la cuota mensual</div>
+        </div>
+        <div class="tip"><strong>Ejemplo práctico:</strong> Si ganas RD$80,000 netos al mes, tu cuota segura sería hasta RD$24,000–32,000. No más.</div>
+      </div>
+
+      <div class="calc-wrap">
+        <div class="calc-title">Calculadora de Capacidad de Pago</div>
+        <div class="field">
+          <label>Ingresos mensuales netos (RD$)</label>
+          <input type="number" id="ing" placeholder="80,000" oninput="calcCap()">
+        </div>
+        <div class="field">
+          <label>Deudas mensuales actuales (RD$)</label>
+          <input type="number" id="deu" placeholder="5,000" oninput="calcCap()">
+        </div>
+        <div class="calc-result" id="res0">
+          <div class="r-row hero-r">
+            <span class="r-lbl">Cuota máxima recomendada</span>
+            <span class="r-val" id="r0a">—</span>
+          </div>
+          <div class="r-row">
+            <span class="r-lbl">Conservador 30%</span>
+            <span class="r-val" id="r0b">—</span>
+          </div>
+          <div class="r-row">
+            <span class="r-lbl">Máximo 40%</span>
+            <span class="r-val" id="r0c">—</span>
+          </div>
+          <div class="r-row">
+            <span class="r-lbl">Disponible (descontando deudas)</span>
+            <span class="r-val" id="r0d">—</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Lista de verificación</div>
+        <div class="card-title">Lo que debes preparar antes de ir al banco</div>
+        <ul class="chk-list">
+          <li onclick="chk(this)"><div class="chk-box"></div><span>Cédula de identidad vigente</span></li>
+          <li onclick="chk(this)"><div class="chk-box"></div><span>Últimas 3 nóminas o estados de cuenta bancarios</span></li>
+          <li onclick="chk(this)"><div class="chk-box"></div><span>Historial crediticio limpio (sin mora activa)</span></li>
+          <li onclick="chk(this)"><div class="chk-box"></div><span>Ahorro para el inicial (10–20% del valor del apartamento)</span></li>
+          <li onclick="chk(this)"><div class="chk-box"></div><span>Reserva para gastos de cierre (3–5% adicional)</span></li>
+          <li onclick="chk(this)"><div class="chk-box"></div><span>Empleo estable o ingresos formalmente comprobables</span></li>
+        </ul>
+        <div class="warn" style="margin-top:20px;"><strong>Importante:</strong> Consulta tu reporte en la Central de Riesgo del Banco Central antes de aplicar a cualquier préstamo.</div>
+      </div>
+
+      <div class="quiz-wrap">
+        <div class="q-eyebrow">Quiz · Módulo 01</div>
+        <div class="q-text">Si ganas RD$60,000 al mes netos, ¿cuál es la cuota mensual máxima que los bancos recomiendan?</div>
+        <div class="q-opts">
+          <button class="q-opt" onclick="qa(this,false,0)">RD$10,000</button>
+          <button class="q-opt" onclick="qa(this,true,0)">Entre RD$18,000 y RD$24,000</button>
+          <button class="q-opt" onclick="qa(this,false,0)">RD$35,000</button>
+          <button class="q-opt" onclick="qa(this,false,0)">No hay límite establecido</button>
+        </div>
+        <div class="q-fb ok" id="qok0">✓ &nbsp;Exacto. El 30% de RD$60,000 son RD$18,000 y el 40% son RD$24,000. Ese es el rango seguro.</div>
+        <div class="q-fb bad" id="qno0">✗ &nbsp;La regla es 30–40% del ingreso neto. Con RD$60,000, eso equivale a RD$18,000–24,000 al mes.</div>
+      </div>
+
+      <div class="nav-btns">
+        <button class="btn-back" onclick="goHome()">← Inicio</button>
+        <button class="btn-next" onclick="next(0)"><span>Módulo 2: Hipoteca →</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── M2 HIPOTECA ── -->
+  <section class="mod-section" id="m1">
+    <div class="mod-header">
+      <div>
+        <div class="mod-eyebrow">Módulo 02</div>
+        <h2 class="mod-h1">Financiamiento<br><em>Hipotecario</em></h2>
+        <p class="mod-desc">Cómo funciona un préstamo hipotecario en República Dominicana y cómo simularlo antes de aplicar.</p>
+      </div>
+      <div class="mod-num-big">02</div>
+    </div>
+    <div class="content">
+
+      <div class="card">
+        <div class="card-label">El mecanismo</div>
+        <div class="card-title">Cómo funciona el préstamo hipotecario</div>
+        <p>El banco financia entre el <strong>80% y 90%</strong> del valor del inmueble tasado. Tú aportas el inicial (10–20%) y pagas el resto en cuotas mensuales a 20–30 años. El inmueble queda como garantía hasta saldar la deuda.</p>
+        <div class="grid-2" style="margin-top:24px;">
+          <div class="g-item">
+            <div class="g-item-icon">🏠</div>
+            <div class="g-item-title">Valor del inmueble</div>
+            <div class="g-item-desc">Precio total del apartamento según el avalúo bancario</div>
+          </div>
+          <div class="g-item">
+            <div class="g-item-icon">💵</div>
+            <div class="g-item-title">Tu inicial</div>
+            <div class="g-item-desc">El 10–20% que aportas de tu propio ahorro</div>
+          </div>
+          <div class="g-item">
+            <div class="g-item-icon">🏦</div>
+            <div class="g-item-title">Préstamo</div>
+            <div class="g-item-desc">El 80–90% restante que el banco financia</div>
+          </div>
+          <div class="g-item">
+            <div class="g-item-icon">📅</div>
+            <div class="g-item-title">Plazo</div>
+            <div class="g-item-desc">Generalmente 20–30 años para pagar en cuotas</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-wrap">
+        <div class="calc-title">Simulador Hipotecario</div>
+        <div class="field">
+          <label>Precio del apartamento (RD$)</label>
+          <input type="number" id="hp" placeholder="4,000,000" oninput="calcHip()">
+        </div>
+        <div class="field">
+          <label>Porcentaje de inicial</label>
+          <select id="hi" onchange="calcHip()">
+            <option value="10">10%</option>
+            <option value="15">15%</option>
+            <option value="20" selected>20%</option>
+            <option value="25">25%</option>
+            <option value="30">30%</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Tasa de interés anual (%)</label>
+          <input type="number" id="ht" placeholder="10.5" step="0.1" oninput="calcHip()">
+        </div>
+        <div class="field">
+          <label>Plazo del préstamo</label>
+          <select id="hpl" onchange="calcHip()">
+            <option value="10">10 años</option>
+            <option value="15">15 años</option>
+            <option value="20" selected>20 años</option>
+            <option value="25">25 años</option>
+            <option value="30">30 años</option>
+          </select>
+        </div>
+        <div class="calc-result" id="res1">
+          <div class="r-row hero-r">
+            <span class="r-lbl">Cuota mensual estimada</span>
+            <span class="r-val" id="r1a">—</span>
+          </div>
+          <div class="r-row">
+            <span class="r-lbl">Inicial requerido</span>
+            <span class="r-val" id="r1b">—</span>
+          </div>
+          <div class="r-row">
+            <span class="r-lbl">Monto del préstamo</span>
+            <span class="r-val" id="r1c">—</span>
+          </div>
+          <div class="r-row">
+            <span class="r-lbl">Total pagado en todo el plazo</span>
+            <span class="r-val" id="r1d">—</span>
+          </div>
+          <div class="r-row">
+            <span class="r-lbl">Intereses totales</span>
+            <span class="r-val" id="r1e">—</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Referencia del mercado</div>
+        <div class="card-title">Principales entidades hipotecarias en RD</div>
+        <table class="tbl">
+          <thead>
+            <tr><th>Entidad</th><th>Tasa aprox.</th><th>Plazo máx.</th><th>Financiamiento</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Banco Popular</td><td>9 – 11 %</td><td>30 años</td><td>Hasta 90 %</td></tr>
+            <tr><td>BHD León</td><td>9.5 – 11 %</td><td>25 años</td><td>Hasta 90 %</td></tr>
+            <tr><td>Banreservas</td><td>8 – 10 %</td><td>30 años</td><td>Hasta 90 %</td></tr>
+            <tr><td>Scotiabank</td><td>10 – 12 %</td><td>20 años</td><td>Hasta 80 %</td></tr>
+            <tr><td>APAP / Asociaciones</td><td>9 – 11 %</td><td>30 años</td><td>Hasta 90 %</td></tr>
+          </tbody>
+        </table>
+        <div class="warn" style="margin-top:16px;"><strong>Nota:</strong> Las tasas varían constantemente. Siempre consulta directamente con el banco para condiciones actualizadas.</div>
+      </div>
+
+      <div class="quiz-wrap">
+        <div class="q-eyebrow">Quiz · Módulo 02</div>
+        <div class="q-text">Un apartamento cuesta RD$5,000,000 y el banco financia el 80%. ¿Cuánto debes tener de inicial?</div>
+        <div class="q-opts">
+          <button class="q-opt" onclick="qa(this,false,1)">RD$500,000</button>
+          <button class="q-opt" onclick="qa(this,false,1)">RD$800,000</button>
+          <button class="q-opt" onclick="qa(this,true,1)">RD$1,000,000</button>
+          <button class="q-opt" onclick="qa(this,false,1)">RD$1,500,000</button>
+        </div>
+        <div class="q-fb ok" id="qok1">✓ &nbsp;Correcto. Si el banco financia el 80%, tú pones el 20%. El 20% de RD$5,000,000 son RD$1,000,000.</div>
+        <div class="q-fb bad" id="qno1">✗ &nbsp;Si el banco cubre el 80%, tú aportas el 20% restante. Eso es el 20% de RD$5,000,000 = RD$1,000,000.</div>
+      </div>
+
+      <div class="nav-btns">
+        <button class="btn-back" onclick="prev(1)">← Módulo 1</button>
+        <button class="btn-next" onclick="next(1)"><span>Módulo 3: En Plano →</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── M3 EN PLANO ── -->
+  <section class="mod-section" id="m2">
+    <div class="mod-header">
+      <div>
+        <div class="mod-eyebrow">Módulo 03</div>
+        <h2 class="mod-h1">Comprar<br><em>en Plano</em></h2>
+        <p class="mod-desc">Adquirir un apartamento antes de construirse puede ser la decisión más inteligente — si sabes cómo hacerlo bien.</p>
+      </div>
+      <div class="mod-num-big">03</div>
+    </div>
+    <div class="content">
+
+      <div class="card">
+        <div class="card-label">¿Qué es?</div>
+        <div class="card-title">Comprar antes de que exista el apartamento</div>
+        <p>Comprar "en plano" significa adquirir el derecho sobre un apartamento que aún no está construido — solo existen los planos arquitectónicos y la promesa del proyecto. A cambio del riesgo, obtienes <strong>precios de preventa</strong> y puedes completar el inicial en cuotas durante la construcción (12–36 meses).</p>
+        <div class="tip" style="margin-top:20px;"><strong>Dato clave:</strong> Muchos proyectos en RD se valorizan entre un 20% y 40% al momento de la entrega. Compras a precio de hoy, recibes a precio de mañana.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Análisis comparativo</div>
+        <div class="card-title">Ventajas y riesgos reales</div>
+        <div class="grid-2">
+          <div style="border:1px solid rgba(184,150,90,0.2); padding:24px; border-radius:1px;">
+            <div style="font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:14px;">Ventajas</div>
+            <ul style="list-style:none; font-size:13px; line-height:2.1; color:var(--ink-2);">
+              <li>→ &nbsp;Precio más bajo que el mercado</li>
+              <li>→ &nbsp;Inicial fraccionado en cuotas</li>
+              <li>→ &nbsp;Alta valorización al entregar</li>
+              <li>→ &nbsp;Posibilidad de personalizar</li>
+              <li>→ &nbsp;Estrenarlo como nuevo</li>
+            </ul>
+          </div>
+          <div style="border:1px solid rgba(180,100,50,0.15); padding:24px; border-radius:1px;">
+            <div style="font-size:10px; letter-spacing:3px; text-transform:uppercase; color:#c07040; margin-bottom:14px;">Riesgos</div>
+            <ul style="list-style:none; font-size:13px; line-height:2.1; color:var(--ink-2);">
+              <li>→ &nbsp;Posibles demoras en la entrega</li>
+              <li>→ &nbsp;Riesgo si la constructora falla</li>
+              <li>→ &nbsp;Cambios al diseño original</li>
+              <li>→ &nbsp;No puedes verlo físicamente</li>
+              <li>→ &nbsp;No puedes mudarte de inmediato</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Guía de verificación</div>
+        <div class="card-title">Cómo validar una constructora antes de firmar</div>
+        <div class="acc">
+          <div class="acc-item">
+            <button class="acc-h" onclick="toggleAcc(this)">
+              <span>1. Registro en el MOPC</span>
+              <span class="acc-arrow">+</span>
+            </button>
+            <div class="acc-body">El Ministerio de Obras Públicas y Comunicaciones registra a todas las constructoras activas. Verifica su licencia en mopc.gob.do antes de comprometerte con cualquier proyecto.</div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-h" onclick="toggleAcc(this)">
+              <span>2. Historial de proyectos entregados</span>
+              <span class="acc-arrow">+</span>
+            </button>
+            <div class="acc-body">Pide al menos 2 referencias de proyectos que ya entregaron. Visita los edificios, conversa con los residentes. Un historial de cumplimiento es la mejor garantía.</div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-h" onclick="toggleAcc(this)">
+              <span>3. Permisos municipales y del CODIA</span>
+              <span class="acc-arrow">+</span>
+            </button>
+            <div class="acc-body">Todo proyecto legítimo debe tener los permisos del Ayuntamiento correspondiente y del Colegio Dominicano de Ingenieros, Arquitectos y Agrimensores (CODIA). Sin estos documentos, no firmes.</div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-h" onclick="toggleAcc(this)">
+              <span>4. Título limpio del terreno</span>
+              <span class="acc-arrow">+</span>
+            </button>
+            <div class="acc-body">El terreno donde se construirá debe tener un título libre de hipotecas, embargos o litigios. Un abogado de tu confianza puede verificar esto en la Jurisdicción Inmobiliaria.</div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-h" onclick="toggleAcc(this)">
+              <span>5. Revisión legal del contrato</span>
+              <span class="acc-arrow">+</span>
+            </button>
+            <div class="acc-body">Nunca firmes sin tu propio abogado. El contrato debe especificar: fecha de entrega, penalidades por demora, especificaciones técnicas, mecanismo de devolución de dinero y qué ocurre si el proyecto se cancela.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-wrap">
+        <div class="q-eyebrow">Quiz · Módulo 03</div>
+        <div class="q-text">¿Cuál es la principal ventaja financiera de comprar un apartamento en plano?</div>
+        <div class="q-opts">
+          <button class="q-opt" onclick="qa(this,false,2)">Puedes mudarte inmediatamente</button>
+          <button class="q-opt" onclick="qa(this,true,2)">Precio más bajo y alta valorización al entregar</button>
+          <button class="q-opt" onclick="qa(this,false,2)">El banco financia el 100% del valor</button>
+          <button class="q-opt" onclick="qa(this,false,2)">No necesitas abogado para firmar</button>
+        </div>
+        <div class="q-fb ok" id="qok2">✓ &nbsp;Exacto. El precio de preventa es inferior al de mercado y el inmueble suele valer considerablemente más al momento de la entrega.</div>
+        <div class="q-fb bad" id="qno2">✗ &nbsp;La ventaja clave es el precio de preventa más bajo y la valorización futura. No podrás mudarte hasta que el proyecto esté terminado.</div>
+      </div>
+
+      <div class="nav-btns">
+        <button class="btn-back" onclick="prev(2)">← Módulo 2</button>
+        <button class="btn-next" onclick="next(2)"><span>Módulo 4: Inversión →</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── M4 INVERSIÓN ── -->
+  <section class="mod-section" id="m3">
+    <div class="mod-header">
+      <div>
+        <div class="mod-eyebrow">Módulo 04</div>
+        <h2 class="mod-h1">Inversión<br><em>Inmobiliaria</em></h2>
+        <p class="mod-desc">Cómo convertir tu apartamento en un activo que genera ingresos mientras duermes.</p>
+      </div>
+      <div class="mod-num-big">04</div>
+    </div>
+    <div class="content">
+
+      <div class="card">
+        <div class="card-label">Estrategias</div>
+        <div class="card-title">Tres formas de ganar con bienes raíces en RD</div>
+        <div class="grid-2" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr));">
+          <div class="g-item">
+            <div class="g-item-icon">🏠</div>
+            <div class="g-item-title">Alquiler Tradicional</div>
+            <div class="g-item-desc">Ingresos estables mes a mes. Ideal en Santo Domingo y Santiago para ejecutivos y familias.</div>
+          </div>
+          <div class="g-item">
+            <div class="g-item-icon">🌴</div>
+            <div class="g-item-title">Alquiler Turístico</div>
+            <div class="g-item-desc">Mayor rentabilidad vía Airbnb o Booking. Ideal en Punta Cana, Las Terrenas y Samaná.</div>
+          </div>
+          <div class="g-item">
+            <div class="g-item-icon">📈</div>
+            <div class="g-item-title">Reventa</div>
+            <div class="g-item-desc">Compras en plano, vendes al entregar con una ganancia del 20–40% sobre el precio pagado.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Análisis por zona</div>
+        <div class="card-title">Mercados con mayor potencial — Selecciona una zona</div>
+        <div class="zones-grid">
+          <div class="z-card" onclick="showZone('sd',this)">
+            <div class="z-icon">🏙️</div>
+            <div class="z-name">Santo Domingo</div>
+            <div class="z-sub">Piantini · Naco · Bella Vista</div>
+            <div class="z-tag">Alta demanda</div>
+          </div>
+          <div class="z-card" onclick="showZone('pc',this)">
+            <div class="z-icon">🌴</div>
+            <div class="z-name">Punta Cana</div>
+            <div class="z-sub">Bávaro · Cap Cana · Uvero</div>
+            <div class="z-tag">Turístico</div>
+          </div>
+          <div class="z-card" onclick="showZone('stg',this)">
+            <div class="z-icon">🏔️</div>
+            <div class="z-name">Santiago</div>
+            <div class="z-sub">Bella Vista · Jardines Norte</div>
+            <div class="z-tag">Crecimiento</div>
+          </div>
+          <div class="z-card" onclick="showZone('la',this)">
+            <div class="z-icon">🌱</div>
+            <div class="z-name">Los Alcarrizos</div>
+            <div class="z-sub">Expansión oeste · Accesible</div>
+            <div class="z-tag">Emergente</div>
+          </div>
+        </div>
+        <div id="zone-info"></div>
+      </div>
+
+      <div class="calc-wrap">
+        <div class="calc-title">Calculadora de Rentabilidad (ROI)</div>
+        <div class="field">
+          <label>Precio del apartamento (RD$)</label>
+          <input type="number" id="rp" placeholder="4,000,000" oninput="calcROI()">
+        </div>
+        <div class="field">
+          <label>Alquiler mensual esperado (RD$)</label>
+          <input type="number" id="ra" placeholder="25,000" oninput="calcROI()">
+        </div>
+        <div class="field">
+          <label>Gastos mensuales — mantenimiento, condo (RD$)</label>
+          <input type="number" id="rg" placeholder="4,000" oninput="calcROI()">
+        </div>
+        <div class="calc-result" id="res3">
+          <div class="r-row hero-r">
+            <span class="r-lbl">Rentabilidad anual (ROI)</span>
+            <span class="r-val" id="r3a">—</span>
+          </div>
+          <div class="r-row">
+            <span class="r-lbl">Ingresos netos anuales</span>
+            <span class="r-val" id="r3b">—</span>
+          </div>
+          <div class="r-row">
+            <span class="r-lbl">Años para recuperar la inversión</span>
+            <span class="r-val" id="r3c">—</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-wrap">
+        <div class="q-eyebrow">Quiz · Módulo 04</div>
+        <div class="q-text">¿Qué modalidad de alquiler genera mayor rentabilidad en zonas turísticas como Punta Cana?</div>
+        <div class="q-opts">
+          <button class="q-opt" onclick="qa(this,false,3)">Alquiler residencial anual fijo</button>
+          <button class="q-opt" onclick="qa(this,true,3)">Alquiler vacacional (Airbnb / Booking)</button>
+          <button class="q-opt" onclick="qa(this,false,3)">Dejar el apartamento vacío</button>
+          <button class="q-opt" onclick="qa(this,false,3)">Venderlo al recibir la llave</button>
+        </div>
+        <div class="q-fb ok" id="qok3">✓ &nbsp;Correcto. El alquiler turístico en zonas de alta demanda vacacional puede generar 2–3 veces más que un contrato de arrendamiento tradicional.</div>
+        <div class="q-fb bad" id="qno3">✗ &nbsp;En zonas turísticas, plataformas como Airbnb generan ingresos notablemente más altos por la demanda constante de visitantes internacionales.</div>
+      </div>
+
+      <div class="nav-btns">
+        <button class="btn-back" onclick="prev(3)">← Módulo 3</button>
+        <button class="btn-next" onclick="next(3)"><span>Módulo 5: Legal →</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── M5 LEGAL ── -->
+  <section class="mod-section" id="m4">
+    <div class="mod-header">
+      <div>
+        <div class="mod-eyebrow">Módulo 05</div>
+        <h2 class="mod-h1">Proceso<br><em>Legal</em></h2>
+        <p class="mod-desc">El marco legal que protege tu compra en República Dominicana. Cada paso importa.</p>
+      </div>
+      <div class="mod-num-big">05</div>
+    </div>
+    <div class="content">
+
+      <div class="card">
+        <div class="card-label">El proceso paso a paso</div>
+        <div class="card-title">De la oferta al título registrado a tu nombre</div>
+        <div class="tl">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-t">1 &mdash; Oferta o Carta de Intención</div>
+            <div class="tl-d">Manifiestas interés formal y negocias el precio. Suele acompañarse de un depósito de garantía (2–5% del valor).</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-t">2 &mdash; Due Diligence</div>
+            <div class="tl-d">Tu abogado verifica el título, busca hipotecas, embargos, juicios pendientes y confirma que el vendedor es el propietario legítimo.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-t">3 &mdash; Contrato de Compraventa</div>
+            <div class="tl-d">Se firma el contrato condicionado. Si hay banco, se coordina el financiamiento y el banco realiza su propio avalúo del inmueble.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-t">4 &mdash; Aprobación del Préstamo</div>
+            <div class="tl-d">El banco evalúa tu perfil financiero y el inmueble. Emite la promesa formal de financiamiento hipotecario.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-t">5 &mdash; Acto de Venta ante Notario</div>
+            <div class="tl-d">Firma oficial del acto de venta ante notario público. Se liquidan los impuestos de transferencia (3% del valor declarado).</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-t">6 &mdash; Registro del Título</div>
+            <div class="tl-d">El Certificado de Título queda registrado a tu nombre en la Jurisdicción Inmobiliaria. ¡En este momento eres propietario legal!</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Costos adicionales</div>
+        <div class="card-title">Gastos de cierre que debes presupuestar</div>
+        <table class="tbl">
+          <thead>
+            <tr><th>Concepto</th><th>Costo aproximado</th><th>Responsable</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Impuesto de Transferencia</td><td>3% del valor</td><td>Comprador</td></tr>
+            <tr><td>Honorarios del abogado</td><td>1–2% del valor</td><td>Comprador</td></tr>
+            <tr><td>Avalúo bancario</td><td>RD$8,000–20,000</td><td>Comprador</td></tr>
+            <tr><td>Gastos notariales</td><td>0.5–1% del valor</td><td>Ambas partes</td></tr>
+            <tr><td>Comisión del banco</td><td>1–2% del préstamo</td><td>Comprador</td></tr>
+            <tr><td>Seguros (vida e incendio)</td><td>Variable</td><td>Comprador</td></tr>
+          </tbody>
+        </table>
+        <div class="tip" style="margin-top:16px;"><strong>Regla práctica:</strong> Reserva entre el 3% y el 5% adicional al precio del apartamento exclusivamente para gastos de cierre.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Documentos a verificar</div>
+        <div class="card-title">Lista legal del comprador</div>
+        <ul class="chk-list">
+          <li onclick="chk(this)"><div class="chk-box"></div><span>Certificado de Título vigente a nombre del vendedor</span></li>
+          <li onclick="chk(this)"><div class="chk-box"></div><span>Constancia de no-deuda con el Ayuntamiento Municipal</span></li>
+          <li onclick="chk(this)"><div class="chk-box"></div><span>Constancia de no-deuda de cuotas de condominio</span></li>
+          <li onclick="chk(this)"><div class="chk-box"></div><span>Plano del apartamento debidamente aprobado</span></li>
+          <li onclick="chk(this)"><div class="chk-box"></div><span>Reglamento interno del condominio</span></li>
+          <li onclick="chk(this)"><div class="chk-box"></div><span>Permiso de construcción y certificado de uso de suelo</span></li>
+          <li onclick="chk(this)"><div class="chk-box"></div><span>Cédula del vendedor o documentos de la empresa propietaria</span></li>
+        </ul>
+      </div>
+
+      <div class="quiz-wrap">
+        <div class="q-eyebrow">Quiz · Módulo 05</div>
+        <div class="q-text">¿Qué porcentaje del valor del inmueble corresponde al impuesto de transferencia en República Dominicana?</div>
+        <div class="q-opts">
+          <button class="q-opt" onclick="qa(this,false,4)">1%</button>
+          <button class="q-opt" onclick="qa(this,false,4)">2%</button>
+          <button class="q-opt" onclick="qa(this,true,4)">3%</button>
+          <button class="q-opt" onclick="qa(this,false,4)">5%</button>
+        </div>
+        <div class="q-fb ok" id="qok4">✓ &nbsp;Correcto. El impuesto de transferencia inmobiliaria en RD es del 3% sobre el valor declarado del inmueble.</div>
+        <div class="q-fb bad" id="qno4">✗ &nbsp;En República Dominicana, el impuesto de transferencia de inmuebles es del 3% del valor declarado.</div>
+      </div>
+
+      <div class="nav-btns">
+        <button class="btn-back" onclick="prev(4)">← Módulo 4</button>
+        <button class="btn-next" onclick="next(4)"><span>Módulo 6: Checklist Final →</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── M6 CHECKLIST ── -->
+  <section class="mod-section" id="m5">
+    <div class="mod-header">
+      <div>
+        <div class="mod-eyebrow">Módulo 06</div>
+        <h2 class="mod-h1">Checklist<br><em>del Comprador</em></h2>
+        <p class="mod-desc">Tu lista definitiva antes de firmar. Marca cada punto. No omitas nada.</p>
+      </div>
+      <div class="mod-num-big">06</div>
+    </div>
+    <div class="content">
+
+      <div class="card">
+        <div class="card-label">Área financiera</div>
+        <div class="card-title">Tus finanzas personales</div>
+        <ul class="chk-list">
+          <li onclick="chk(this)"><div class="chk-box"></div><span>Calculé mi capacidad de pago y no supera el 30–40% de mis ingresos</span></li>
+          <li onclick="chk(this)"><div class="chk-box"></div><span>Tengo el inicial disponible (mínimo 10–20% del valor)</span></li>
+          <li onclick="chk(this)"><div class="chk-box"></div><span>Tengo reservado el 3–5% adicional para gastos de cierre</span></li>
+          <li onclick="chk(this)"><div class="chk-box"></div><span>Mi historial crediticio está limpio y verificado</span></li>
+          <li onclick="chk(this)"><div class="chk-box"></div><span>Mis deudas actuales no afectan mi ratio de endeudamiento</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Área del proyecto</div>
+        <div class="card-title">El apartamento y la constructora</div>
+        <ul class="chk-list">
+          <li onclick="chk(this)"><div class="chk-box"></div><span>Verifiqué la trayectoria de la constructora y proyectos entregados</span></li>
+          <li onclick="chk(this)"><div class="chk-box"></div><span>La ubicación tiene buena accesibilidad, servicios y potencial de valorización</span></li>
+          <li onclick="chk(this)"><div class="chk-box"></div><span>El proyecto tiene todos los permisos legales en orden</span></li>
+          <li onclick="chk(this)"><div class="chk-box"></div><span>Visité o verifiqué proyectos anteriores de la misma constructora</span></li>
+          <li onclick="chk(this)"><div class="chk-box"></div><span>Evalué los amenities y la cuota de condominio mensual</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Área bancaria</div>
+        <div class="card-title">El banco y el financiamiento</div>
+        <ul class="chk-list">
+          <li onclick="chk(this)"><div class="chk-box"></div><span>Cotizé en al menos 3 instituciones financieras diferentes</span></li>
+          <li onclick="chk(this)"><div class="chk-box"></div><span>Comparé tasas, plazos, comisiones y condiciones completas</span></li>
+          <li onclick="chk(this)"><div class="chk-box"></div><span>Entiendo todos los gastos adicionales del financiamiento</span></li>
+          <li onclick="chk(this)"><div class="chk-box"></div><span>Obtuve la pre-aprobación formal del préstamo</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Área legal</div>
+        <div class="card-title">La parte jurídica</div>
+        <ul class="chk-list">
+          <li onclick="chk(this)"><div class="chk-box"></div><span>Contraté un abogado independiente de mi confianza</span></li>
+          <li onclick="chk(this)"><div class="chk-box"></div><span>El título está limpio: sin hipotecas, embargos ni litigios</span></li>
+          <li onclick="chk(this)"><div class="chk-box"></div><span>Mi abogado revisó el contrato cláusula por cláusula</span></li>
+          <li onclick="chk(this)"><div class="chk-box"></div><span>El contrato incluye penalidades por demora (si es en plano)</span></li>
+          <li onclick="chk(this)"><div class="chk-box"></div><span>Verifiqué deudas municipales y de condominio del inmueble</span></li>
+        </ul>
+      </div>
+
+      <div class="card" style="border-color:var(--line);">
+        <div class="card-label">Contacto</div>
+        <div class="card-title">Casa Raíz RD — Asesoría personalizada</div>
+        <p style="margin-bottom:24px;">¿Listo para dar el siguiente paso? El equipo de Casa Raíz RD te acompaña en todo el proceso de compra.</p>
+        <a href="https://wa.me/18292786677" class="c-link" target="_blank" style="color:var(--ink-2); border-bottom:1px solid var(--line-2); padding:12px 0; display:flex; align-items:center; gap:12px; font-size:14px; text-decoration:none; transition:color 0.2s;">
+          <span>💬</span> WhatsApp: +1 (829) 278-6677
+        </a>
+        <a href="https://www.casaraizrd.com" class="c-link" target="_blank" style="color:var(--ink-2); border-bottom:1px solid var(--line-2); padding:12px 0; display:flex; align-items:center; gap:12px; font-size:14px; text-decoration:none; transition:color 0.2s;">
+          <span>🌐</span> www.casaraizrd.com
+        </a>
+        <a href="https://instagram.com/casaraizrd" class="c-link" target="_blank" style="color:var(--ink-2); padding:12px 0; display:flex; align-items:center; gap:12px; font-size:14px; text-decoration:none; transition:color 0.2s;">
+          <span>📸</span> @casaraizrd en Instagram
+        </a>
+      </div>
+
+      <div class="nav-btns">
+        <button class="btn-back" onclick="prev(5)">← Módulo 5</button>
+        <button class="btn-next" onclick="finish()"><span>Completar el curso →</span></button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ════════════════════ DONE ════════════════════ -->
+<div id="done-screen">
+  <div class="done-ornament">◈</div>
+  <div class="done-eyebrow">Certificado de Completación · 2026</div>
+  <h2>Felicidades,<br><em>Futuro Propietario</em></h2>
+  <p>Has completado el Curso Completo 2026 de Casa Raíz RD. Ahora cuentas con el conocimiento para tomar decisiones informadas en tu compra.</p>
+
+  <div class="cert">
+    <div class="cert-eye">Casa Raíz RD · Curso Completo 2026</div>
+    <div class="cert-name">Cómo Comprar un Apartamento</div>
+    <div class="cert-sub">República Dominicana</div>
+    <div class="cert-score" id="fscore">—</div>
+    <div class="cert-score-lbl">Calificación final</div>
+  </div>
+
+  <div class="done-contact">
+    <h3>El siguiente paso es tuyo</h3>
+    <a href="https://wa.me/18292786677" class="c-link" target="_blank"><span class="c-icon">💬</span> Escríbenos por WhatsApp</a>
+    <a href="https://www.casaraizrd.com" class="c-link" target="_blank"><span class="c-icon">🌐</span> Explorar proyectos disponibles</a>
+    <a href="https://instagram.com/casaraizrd" class="c-link" target="_blank"><span class="c-icon">📸</span> @casaraizrd</a>
+  </div>
+
+  <button class="btn-restart" onclick="restart()">↩ Volver al inicio</button>
+</div>
+
+<script>
+// ── CURSOR ──
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+document.addEventListener('mousemove', e => {
+  cur.style.left = e.clientX + 'px';
+  cur.style.top  = e.clientY + 'px';
+  setTimeout(() => {
+    ring.style.left = e.clientX + 'px';
+    ring.style.top  = e.clientY + 'px';
+  }, 60);
+});
+document.querySelectorAll('button, a, .z-card, .chk-list li, .q-opt').forEach(el => {
+  el.addEventListener('mouseenter', () => { cur.style.width='16px'; cur.style.height='16px'; ring.style.width='48px'; ring.style.height='48px'; });
+  el.addEventListener('mouseleave', () => { cur.style.width='10px'; cur.style.height='10px'; ring.style.width='32px'; ring.style.height='32px'; });
+});
+
+// ── STATE ──
+let done = new Set(), score = 0, total = 0, cur_mod = 0;
+
+// ── NAVIGATION ──
+function startCourse() {
+  document.getElementById('hero-screen').style.display = 'none';
+  document.getElementById('main-content').classList.add('visible');
+  scrollTo(0,0);
+}
+function goHome() {
+  document.getElementById('hero-screen').style.display = 'flex';
+  document.getElementById('main-content').classList.remove('visible');
+  updateProg(); scrollTo(0,0);
+}
+function goMod(i) {
+  document.querySelectorAll('.mod-section').forEach((s,j) => s.classList.toggle('active', j===i));
+  document.querySelectorAll('.npill').forEach((p,j) => p.classList.toggle('active', j===i));
+  cur_mod = i; scrollTo(0,0);
+}
+function next(i) { done.add(i); updateProg(); if(i<5) goMod(i+1); }
+function prev(i) { if(i>0) goMod(i-1); }
+function updateProg() {
+  const p = (done.size/6)*100;
+  document.getElementById('main-progress').style.width = p+'%';
+  document.getElementById('progress-text').textContent = done.size+' de 6 módulos completados';
+}
+
+// ── FINISH ──
+function finish() {
+  done.add(5); updateProg();
+  document.getElementById('main-content').classList.remove('visible');
+  const ds = document.getElementById('done-screen');
+  ds.classList.add('show');
+  const pct = total > 0 ? Math.round((score/total)*100) : 100;
+  document.getElementById('fscore').textContent = pct + '%';
+  scrollTo(0,0);
+}
+function restart() {
+  done.clear(); score=0; total=0;
+  document.getElementById('done-screen').classList.remove('show');
+  document.getElementById('hero-screen').style.display = 'flex';
+  updateProg(); goMod(0);
+  document.querySelectorAll('.q-opt').forEach(o => o.classList.remove('ok','bad','off'));
+  document.querySelectorAll('.q-fb').forEach(f => f.classList.remove('show','ok','bad'));
+  document.querySelectorAll('.chk-list li').forEach(l => { l.classList.remove('done'); l.querySelector('.chk-box').innerHTML=''; });
+  scrollTo(0,0);
+}
+
+// ── CALCULATORS ──
+const f = n => 'RD$' + Math.round(n).toLocaleString('es-DO');
+
+function calcCap() {
+  const ing = +document.getElementById('ing').value||0;
+  const deu = +document.getElementById('deu').value||0;
+  if(!ing) return;
+  const r = document.getElementById('res0');
+  r.classList.add('show');
+  document.getElementById('r0a').textContent = f(ing*0.3)+' – '+f(ing*0.4);
+  document.getElementById('r0b').textContent = f(ing*0.3);
+  document.getElementById('r0c').textContent = f(ing*0.4);
+  document.getElementById('r0d').textContent = f(Math.max(0,ing*0.3-deu));
+}
+
+function calcHip() {
+  const p = +document.getElementById('hp').value||0;
+  const pi = +document.getElementById('hi').value/100;
+  const t = +document.getElementById('ht').value||0;
+  const pl = +document.getElementById('hpl').value;
+  if(!p||!t) return;
+  const ini = p*pi, loan = p-ini;
+  const r = (t/100)/12, n = pl*12;
+  const q = loan*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
+  const tot = q*n;
+  const res = document.getElementById('res1');
+  res.classList.add('show');
+  document.getElementById('r1a').textContent = f(q)+'/mes';
+  document.getElementById('r1b').textContent = f(ini);
+  document.getElementById('r1c').textContent = f(loan);
+  document.getElementById('r1d').textContent = f(tot);
+  document.getElementById('r1e').textContent = f(tot-loan);
+}
+
+function calcROI() {
+  const p = +document.getElementById('rp').value||0;
+  const a = +document.getElementById('ra').value||0;
+  const g = +document.getElementById('rg').value||0;
+  if(!p||!a) return;
+  const net = (a-g)*12;
+  const roi = (net/p)*100;
+  const res = document.getElementById('res3');
+  res.classList.add('show');
+  document.getElementById('r3a').textContent = roi.toFixed(1)+'% anual';
+  document.getElementById('r3b').textContent = f(net)+'/año';
+  document.getElementById('r3c').textContent = (p/net).toFixed(1)+' años';
+}
+
+// ── QUIZ ──
+function qa(btn, correct, idx) {
+  const group = btn.closest('.q-opts');
+  group.querySelectorAll('.q-opt').forEach(o => o.classList.add('off'));
+  if(correct) {
+    btn.classList.add('ok');
+    score++;
+    const el = document.getElementById('qok'+idx);
+    if(el) { el.classList.add('show','ok'); }
+  } else {
+    btn.classList.add('bad');
+    group.querySelectorAll('.q-opt').forEach(o => { if(o.getAttribute('onclick').includes('true')) o.classList.add('ok'); });
+    const el = document.getElementById('qno'+idx);
+    if(el) { el.classList.add('show','bad'); }
+  }
+  total++;
+}
+
+// ── CHECKLIST ──
+function chk(li) {
+  li.classList.toggle('done');
+  li.querySelector('.chk-box').innerHTML = li.classList.contains('done') ? '✓' : '';
+}
+
+// ── ACCORDION ──
+function toggleAcc(btn) {
+  btn.parentElement.classList.toggle('open');
+}
+
+// ── ZONES ──
+const zd = {
+  sd:  '<strong style="color:var(--gold)">Santo Domingo</strong> — El mercado más grande y líquido del país. Zonas como Piantini, Naco y Bella Vista concentran la mayor demanda de alquiler ejecutivo. Precios por m² entre RD$60,000 y RD$120,000+. Alta rentabilidad para alquiler a largo plazo y excelente liquidez para reventa.',
+  pc:  '<strong style="color:var(--gold)">Punta Cana / Bávaro</strong> — La joya del turismo dominicano. Con más de 8 millones de visitantes anuales, la demanda de alquiler vacacional es sostenida todo el año. ROI promedio del 8–12% vía Airbnb. Cap Cana representa el segmento de lujo; Uvero Alto ofrece entrada a precios más accesibles.',
+  stg: '<strong style="color:var(--gold)">Santiago de los Caballeros</strong> — Segunda ciudad del país, con mercado en expansión acelerada. Precios 25–35% más accesibles que Santo Domingo. Fuerte demanda residencial de familias y ejecutivos locales. Zonas como Jardines del Norte y Bella Vista Santiago concentran los mejores proyectos nuevos.',
+  la:  '<strong style="color:var(--gold)">Los Alcarrizos y el Oeste</strong> — El mercado emergente de mayor crecimiento en el Gran Santo Domingo. Precios 40–50% inferiores al Distrito Nacional. Ideal para compradores de primera vivienda y para inversionistas que buscan plusvalía a mediano plazo. La expansión de infraestructura vial está impulsando fuertemente esta zona.',
+};
+
+function showZone(key, el) {
+  document.querySelectorAll('.z-card').forEach(c => c.classList.remove('sel'));
+  el.classList.add('sel');
+  const info = document.getElementById('zone-info');
+  info.style.display = 'block';
+  info.innerHTML = zd[key];
+}
+</script>
+</body>
+</html>
