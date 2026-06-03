@@ -8,51 +8,52 @@ const db = getFirestore(app);
 const form = document.getElementById("leadMagnetForm");
 
 if (form) {
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+form.addEventListener("submit", async (e) => {
+e.preventDefault();
 
-    const button = form.querySelector("button[type='submit']") || form.querySelector("button");
-    const originalText = button ? button.textContent : "";
+```
+const button = form.querySelector("button[type='submit']") || form.querySelector("button");
+const originalText = button ? button.textContent : "";
 
-    try {
-      if (button) {
-        button.disabled = true;
-        button.textContent = "Preparando acceso...";
-      }
+try {
+  if (button) {
+    button.disabled = true;
+    button.textContent = "Preparando acceso...";
+  }
 
-      const data = new FormData(form);
+  const data = new FormData(form);
 
-      const lead = {
-        nombre: String(data.get("nombre") || "").trim(),
-        whatsapp: String(data.get("whatsapp") || "").trim(),
-        correo: String(data.get("correo") || "").trim(),
-        presupuesto: String(data.get("presupuesto") || "").trim(),
-        zona: String(data.get("zona") || "").trim(),
-        estado: "Nuevo",
-        origen: "Landing Curso Interactivo",
-        recurso: "Curso interactivo HTML",
-        notas: "",
-        createdAt: serverTimestamp(),
-        updatedAt: serverTimestamp()
-      };
+  const lead = {
+    nombre: String(data.get("nombre") || "").trim(),
+    whatsapp: String(data.get("whatsapp") || "").trim(),
+    correo: String(data.get("correo") || "").trim(),
+    estado: "Nuevo",
+    origen: "Landing Curso Interactivo",
+    recurso: "Curso interactivo HTML",
+    notas: "",
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp()
+  };
 
-      if (!lead.nombre || !lead.whatsapp || !lead.correo || !lead.presupuesto) {
-        alert("Por favor completa los campos obligatorios.");
-        return;
-      }
+  if (!lead.nombre || !lead.whatsapp || !lead.correo) {
+    alert("Por favor completa los campos obligatorios.");
+    return;
+  }
 
-      await addDoc(collection(db, "leads"), lead);
+  await addDoc(collection(db, "leads"), lead);
 
-      window.location.href = "curso_apartamento_rd.html";
+  window.location.href = "curso_apartamento_rd.html";
 
-    } catch (error) {
-      console.error(error);
-      alert("No se pudo enviar la información. Revisa Firebase o intenta nuevamente.");
-    } finally {
-      if (button) {
-        button.disabled = false;
-        button.textContent = originalText;
-      }
-    }
-  });
+} catch (error) {
+  console.error(error);
+  alert("No se pudo enviar la información. Revisa Firebase o intenta nuevamente.");
+} finally {
+  if (button) {
+    button.disabled = false;
+    button.textContent = originalText;
+  }
+}
+```
+
+});
 }
